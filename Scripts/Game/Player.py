@@ -1,5 +1,4 @@
-import pygame as pg
-import General.playermove as pm
+import Scripts.Game.playermove as pm
 
 class Player(pm.PlayerMove):
     pass

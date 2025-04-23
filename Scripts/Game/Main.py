@@ -1,6 +1,6 @@
 import pygame
 import sys
-from Scripts.Game.General.buttons_class import Button
+from Scripts.Game.buttons_class import Button
 
 pygame.init()
 
@@ -19,7 +19,7 @@ def main_menu():
         screen.fill((168, 181, 178))
 
         font_size = int(HEIGHT * 0.1)
-        pixel_font = pygame.font.Font("assets/Lover-unity.otf", font_size)
+        pixel_font = pygame.font.Font("General/assets/Lover-unity.otf", font_size)
 
         text_surface = pixel_font.render("Rusostrus", True, (255, 255, 255))
         text_rect = text_surface.get_rect(center=(WIDTH // 2, HEIGHT // 6))
