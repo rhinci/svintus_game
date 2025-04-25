@@ -1,6 +1,6 @@
 import pygame
 import sys
-from Scripts.Game.buttons_class import Button
+from buttons_class import Button
 
 pygame.init()
 
