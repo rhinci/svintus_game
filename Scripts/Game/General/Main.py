@@ -22,7 +22,6 @@ def main_menu():
     while running:
         screen.blit(background, (0, 0))
 
-
         font_size = int(HEIGHT * 0.1)
         pixel_font = pygame.font.Font("Assets/Lover-unity.otf", font_size)
 
