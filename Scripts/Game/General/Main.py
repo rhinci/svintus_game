@@ -8,6 +8,9 @@ WIDTH, HEIGHT = 1080, 720
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Rusostrus")
 
+background = pygame.image.load("Assets/Background.png").convert()
+background = pygame.transform.scale(background, (WIDTH, HEIGHT))
+
 easy_btn = Button(screen, 0.35, 0.3, 0.3, 0.1, "", "Assets/btn_easy.png", "Assets/btn_easy_hovered.png")
 hard_btn = Button(screen, 0.35, 0.45, 0.3, 0.1, "", "Assets/btn_hard.png", "Assets/btn_hard_hovered.png")
 weapon_btn = Button(screen, 0.35, 0.6, 0.3, 0.1, "", "Assets/btn_weapons.png", "Assets/btn_weapons_hovered.png")
@@ -17,7 +20,8 @@ exit_btn = Button(screen, 0.35, 0.75, 0.3, 0.1, "", "Assets/btn_exit.png", "Asse
 def main_menu():
     running = True
     while running:
-        screen.fill((168, 181, 178))
+        screen.blit(background, (0, 0))
+
 
         font_size = int(HEIGHT * 0.1)
         pixel_font = pygame.font.Font("Assets/Lover-unity.otf", font_size)
