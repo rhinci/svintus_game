@@ -8,7 +8,7 @@ WIDTH, HEIGHT = 1080, 720
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Rusostrus")
 
-background = pygame.image.load("Assets/Background.png").convert()
+background = pygame.image.load("Assets\Background.png").convert()
 background = pygame.transform.scale(background, (WIDTH, HEIGHT))
 
 easy_btn = Button(screen, 0.35, 0.3, 0.3, 0.1, "", "Assets/btn_easy.png", "Assets/btn_easy_hovered.png")
@@ -16,6 +16,11 @@ hard_btn = Button(screen, 0.35, 0.45, 0.3, 0.1, "", "Assets/btn_hard.png", "Asse
 weapon_btn = Button(screen, 0.35, 0.6, 0.3, 0.1, "", "Assets/btn_weapons.png", "Assets/btn_weapons_hovered.png")
 exit_btn = Button(screen, 0.35, 0.75, 0.3, 0.1, "", "Assets/btn_exit.png", "Assets/btn_exit_hovered.png")
 
+buttons = pygame.sprite.Group()
+buttons.add(easy_btn)
+buttons.add(hard_btn)
+buttons.add(weapon_btn)
+buttons.add(weapon_btn)
 
 def main_menu():
     running = True
@@ -64,12 +69,7 @@ def main_menu():
         weapon_btn.check_hover(mouse_pos)
         exit_btn.check_hover(mouse_pos)
 
-        easy_btn.draw()
-        hard_btn.draw()
-        weapon_btn.draw()
-        exit_btn.draw()
+        buttons.draw()
 
         pygame.display.flip()
-
-
 main_menu()

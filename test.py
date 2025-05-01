@@ -1,29 +1,37 @@
-from Scripts.Game import Player as p
 import pygame as pg
+from Scripts.Game.General import Player
+from Scripts.Game.General import Bullet
+from Scripts.Game.General import Weapon
 
 pg.init()
+clock = pg.time.Clock()
+#дисплей
+size = (1080,900)
+screen = pg.display.set_mode(size)
+clock = pg.time.Clock()
+FPS = 60
+#оружие
+#Игрок
+pos = (size[0]/2,size[1]/2)
+weapon = Weapon.Weapon("Scripts\Game\General\Assets\pngwing.com.png",10,10,pos)
+weapon.set_sprite_size((100,50))
+player = Player.Player(1,1,10,1,pos,(200,200),screen)
+player.set_weapon(weapon)
 
-height = 1000
-width = 1000
-screen_size = (width,height)
-screen = pg.display.set_mode(screen_size)
+bullets = pg.sprite.Group()
 
-player = p.Player()
-player.set_stats(1,1,0.1,1)
-x,y = height//2,width//2
-player.set_sprite("Scripts\Game\General\Assets\PlayerImage.jpg",(x,y))
-size = (100,100)
-player.set_sprite_size(size)
+running = True
 
-run = True
-while run:
+while running:
+    clock.tick(FPS)
     screen.fill((0,0,0))
-    player.rotate()
-    player.sprite_move(screen,(x,y))
+    player.update()
+    player.weapon.bullets.update()
+    player.weapon.bullets.draw(screen)
+
     for event in pg.event.get():
-        if event.type == pg.QUIT:
-            run = False
-    keys = pg.key.get_pressed()
-    x,y = player.move(x,y,player.spd,keys,screen_size,size)
+        if event.type == pg.QUIT or event.type == pg.K_ESCAPE:
+            running = False
+            break
+
     pg.display.flip()
-pg.quit()

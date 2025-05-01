@@ -16,15 +16,17 @@ class PlayerMove:
             return 1
         return 0
 
-    def move(self, x, y, speed, event,border,size):
-        x += speed * self.move_h(event)
-        y += speed * self.move_v(event)
-        if x<0:
-            x = 0
-        if y<0:
-            y = 0
-        if x>border[0]-size[0]:
-            x = border[0]-size[0]
-        if y>border[1]-size[1]:
-            y = border[1]-size[1]
-        return x, y
+    def move(self, pos, speed,size):
+        border = pg.display.get_window_size()
+        keys = pg.key.get_pressed()
+        pos[0] += speed * self.move_h(keys)
+        pos[1] += speed * self.move_v(keys)
+        if pos[0]<0:
+            pos[0] = 0
+        if pos[1]<0:
+            pos[1] = 0
+        if pos[0]>border[0]-size[0]/2:
+            pos[0] = border[0]-size[0]/2
+        if pos[1]>border[1]-size[1]/2:
+            pos[1] = border[1]-size[1]/2
+        return pos

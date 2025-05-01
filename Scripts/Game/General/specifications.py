@@ -1,14 +1,16 @@
 class specifications:
-    def set_stats(self, atk, spd_atk, spd, max_hp):
+    def set_stats(self, atk, spd_atk, spd, max_hp,tag):
+        super().__init__()
         self.atk = atk
         self.spd_atk = spd_atk
         self.spd = spd
         self.max_hp = max_hp
         self.curr_hp = max_hp
+        self.tag = tag
 
     # HP
     def death(self):
-        pass
+        self.kill()
 
     def change_hp(self, change):
         self.curr_hp += change
