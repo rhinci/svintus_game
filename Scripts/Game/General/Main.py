@@ -1,7 +1,7 @@
 import pygame
 import sys
 from buttons_class import Button
-from Scripts.Game.General.configs.main_menu_btns_config import BUTTON_DEFINITIONS
+from Scripts.Game.General.configs.btns_config import BUTTON_DEFINITIONS
 
 pygame.init()
 
