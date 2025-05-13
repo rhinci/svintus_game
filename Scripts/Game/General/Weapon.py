@@ -3,20 +3,25 @@ from .Bullet import Bullet
 from pygame.math import Vector2
 
 
-class Weapon():
-    def __init__(self, image, spd, dmg, pos):
+class Weapon(pg.sprite.Sprite):
+    def __init__(self, image, spd, dmg, pos,all_sprites,target_group,weapon_group):
+        super().__init__(all_sprites,weapon_group)
         self.image = pg.image.load(image)
         self.orig_image = self.image
         self.rect = self.image.get_rect(center=pos)
-        self.pos = Vector2(pos)
+        self.rect.center = pos
+
 
         self.bullet_spd = spd
         self.bullet_dmg = dmg
         self.cooldown = 1
-        self.bullets = pg.sprite.Group()
+
+        self.all_sprites = all_sprites
+        self.bullet_group = pg.sprite.Group
+        self.target = target_group
 
     def rotate(self):
-        direction = pg.mouse.get_pos() - self.pos
+        direction = pg.mouse.get_pos() - Vector2(self.rect.midright)
         angle = -direction.as_polar()[1]
         flipped = pg.mouse.get_pos()[0] <= self.rect.centerx
         self.image = pg.transform.rotate(pg.transform.flip(self.orig_image, False, flipped), angle)
@@ -26,9 +31,12 @@ class Weapon():
         self.orig_image = pg.transform.scale(self.orig_image, scale)
 
     def fire(self):
-        self.bullets.add(Bullet(self.rect.midright, self.bullet_spd, self.bullet_dmg))
+        if pg.mouse.get_pos()[0] <= self.rect.centerx:
+            Bullet(self.all_sprites,self.target,self.rect.midleft, self.bullet_spd, self.bullet_dmg)
+        else:
+            Bullet(self.all_sprites,self.target,self.rect.midright, self.bullet_spd, self.bullet_dmg)
 
-    def draw(self, screen, pos):
-        self.rect.center = pos
+    def update(self):
         self.rotate()
-        screen.blit(self.image, pos)
+    def draw(self,screen):
+        screen.blit(self.image,self.image.get_size())

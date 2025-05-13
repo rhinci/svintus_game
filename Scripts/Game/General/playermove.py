@@ -18,6 +18,7 @@ class PlayerMove:
 
     def move(self, pos, speed, size):
         border = pg.display.get_window_size()
+        size = pg.Vector2(size)
         keys = pg.key.get_pressed()
         pos[0] += speed * self.move_h(keys)
         pos[1] += speed * self.move_v(keys)

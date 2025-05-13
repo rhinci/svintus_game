@@ -10,18 +10,20 @@ class specifications:
 
     # HP
     def death(self):
-        self.kill()
+        pass
 
-    def change_hp(self, change):
-        self.curr_hp += change
+    def is_dead(self):
         if self.curr_hp <= 0:
             self.death()
-        elif self.curr_hp > self.max_hp:
+    def change_hp(self, change):
+        self.curr_hp += change
+        if self.curr_hp > self.max_hp:
             self.curr_hp = self.max_hp
+        self.is_dead()
 
     def change_max_hp(self, change):
         self.max_hp += change
-        if self.max_hp <= 0:
+        if self.is_dead():
             self.death()
 
     def get_curr_hp(self):
