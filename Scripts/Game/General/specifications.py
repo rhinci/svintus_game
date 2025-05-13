@@ -1,5 +1,5 @@
 class specifications:
-    def set_stats(self, atk, spd_atk, spd, max_hp,tag):
+    def set_stats(self, atk, spd_atk, spd, max_hp, tag):
         super().__init__()
         self.atk = atk
         self.spd_atk = spd_atk

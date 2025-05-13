@@ -1,6 +1,7 @@
 import pygame
 import sys
 from buttons_class import Button
+from Scripts.Game.General.configs.main_menu_btns_config import BUTTON_DEFINITIONS
 
 pygame.init()
 
@@ -8,29 +9,26 @@ WIDTH, HEIGHT = 1080, 720
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Rusostrus")
 
-background = pygame.image.load("Assets\Background.png").convert()
+background = pygame.image.load("Assets/Background.png").convert()
 background = pygame.transform.scale(background, (WIDTH, HEIGHT))
 
-easy_btn = Button(screen, 0.35, 0.3, 0.3, 0.1, "", "Assets/btn_easy.png", "Assets/btn_easy_hovered.png")
-hard_btn = Button(screen, 0.35, 0.45, 0.3, 0.1, "", "Assets/btn_hard.png", "Assets/btn_hard_hovered.png")
-weapon_btn = Button(screen, 0.35, 0.6, 0.3, 0.1, "", "Assets/btn_weapons.png", "Assets/btn_weapons_hovered.png")
-exit_btn = Button(screen, 0.35, 0.75, 0.3, 0.1, "", "Assets/btn_exit.png", "Assets/btn_exit_hovered.png")
-
-buttons = pygame.sprite.Group()
-buttons.add(easy_btn)
-buttons.add(hard_btn)
-buttons.add(weapon_btn)
-buttons.add(weapon_btn)
 
 def main_menu():
+    buttons = pygame.sprite.Group()
+    button_instances = {}
+
+    for btn_def in BUTTON_DEFINITIONS:
+        btn = Button(screen, 0.35, btn_def["y_pos"], 0.3, 0.1, "", btn_def["image"], btn_def["hover_image"])
+        buttons.add(btn)
+        button_instances[btn_def["name"]] = btn
+
     running = True
     while running:
         screen.blit(background, (0, 0))
 
         font_size = int(HEIGHT * 0.1)
         pixel_font = pygame.font.Font("Assets/Lover-unity.otf", font_size)
-
-        text_surface = pixel_font.render("Rusostrus", True, (255, 255, 255))
+        text_surface = pixel_font.render("Rusostrus", True, (0, 0, 0))
         text_rect = text_surface.get_rect(center=(WIDTH // 2, HEIGHT // 6))
         screen.blit(text_surface, text_rect)
 
@@ -41,35 +39,33 @@ def main_menu():
                 sys.exit()
 
             if event.type == pygame.USEREVENT:
-                if event.button == easy_btn:
+                if event.button == button_instances["easy"]:
                     print("Easy mode selected")
                     # точка входа в изи мод
 
-                elif event.button == hard_btn:
+                elif event.button == button_instances["hard"]:
                     print("Hard mode selected")
-                    # точка входа в хард мод | установка флага для модификаторов скейлинга
+                    # точка входа в хард мод
 
-                elif event.button == weapon_btn:
+                elif event.button == button_instances["weapon"]:
                     print("Open weapon selection")
                     # вход в меню выбора оружия
 
-                elif event.button == exit_btn:
+                elif event.button == button_instances["exit"]:
                     print("Exiting game")
                     pygame.quit()
                     sys.exit()
 
-            easy_btn.handle_event(event)
-            hard_btn.handle_event(event)
-            weapon_btn.handle_event(event)
-            exit_btn.handle_event(event)
+            for btn in button_instances.values():
+                btn.handle_event(event)
 
         mouse_pos = pygame.mouse.get_pos()
-        easy_btn.check_hover(mouse_pos)
-        hard_btn.check_hover(mouse_pos)
-        weapon_btn.check_hover(mouse_pos)
-        exit_btn.check_hover(mouse_pos)
+        for btn in button_instances.values():
+            btn.check_hover(mouse_pos)
 
-        buttons.draw()
+        buttons.draw(screen)
 
         pygame.display.flip()
+
+
 main_menu()
