@@ -5,16 +5,16 @@ import math
 class Bullet(pygame.sprite.Sprite):
     def __init__(self,all_sprites,targets, start_pos, spd, dmg):
         super().__init__(all_sprites)
-        self.image = pygame.Surface((10, 10))
-        self.image.fill((255, 0, 0))  # Красная пуля
-        self.rect = self.image.get_rect(center=start_pos)
-        self.targets = targets
-
         # Вычисляем угол и направление
         mouse_pos = pygame.mouse.get_pos()
         dx = mouse_pos[0] - start_pos[0]
         dy = mouse_pos[1] - start_pos[1]
         self.angle = math.atan2(dy, dx)
+        self.image = pygame.transform.rotate(pygame.Surface((5,10)),-self.angle)
+        self.image.fill((255, 0, 0))  # Красная пуля
+        self.rect = self.image.get_rect(center=start_pos)
+        self.targets = targets
+
 
         # Скорость пули
         self.speed = spd

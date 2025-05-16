@@ -1,18 +1,26 @@
 import pygame as pg
 import random as r
+from Scripts.Game.General.Enemy import enemy,melee_enemy
+from Scripts.Game.General.configs.enemy_config import MELEE_ENEMY
+list_of_enemys = [MELEE_ENEMY]
+
 class spawner():
-    def __init__(self,list_of_enemys):
-        self.screen = pg.display.get_surface()
+    def __init__(self,all_sprites,enemy_group,player,spawn_cooldown,screen):
+        self.spawn_cooldown = spawn_cooldown*1000
+        self.all_sprites = all_sprites
+        self.enemy_group = enemy_group
+        self.target = player
+        self.screen = screen
         self.list_of_enemys = list_of_enemys
         self.update_time = pg.time.get_ticks()
-    def spawn(self,mob):
-        mob
-        x = r.randint(200,int(self.screen.get_size()[0]/2))
-        y = r.randint(200,int(self.screen.get_size()[1]/2))
+    def spawn(self):
+        x = r.randint(200,int(self.screen[0]/2))
+        y = r.randint(200,int(self.screen[1]/2))
         pos = (x,y)
-        mob.pos = pos
+        return pos
     def update(self):
-        ANIMATION_COOLDOWN = 100
-        if pg.time.get_ticks()-self.update_time > ANIMATION_COOLDOWN:
+        if pg.time.get_ticks()-self.update_time >= self.spawn_cooldown:
             self.update_time = pg.time.get_ticks()
-            self.spawn(self.list_of_enemys[r.randint(0,len(self.list_of_enemys)-1)])
+            match r.choice(list_of_enemys):
+                case MELEE_ENEMY:
+                    melee_enemy(self.all_sprites,self.enemy_group,self.target,MELEE_ENEMY,self.spawn())

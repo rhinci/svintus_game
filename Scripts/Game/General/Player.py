@@ -5,10 +5,10 @@ import pygame as pg
 
 
 class Player(PlayerMove, visual, specifications):
-    def __init__(self,all_sprites,player_group, atk, spd_atk, spd, max_hp, pos, scale):
+    def __init__(self,all_sprites,player_group, stats, pos):
         super().__init__(all_sprites,player_group)
-        self.set_stats(atk, spd_atk, spd, max_hp, 'Player')
-        self.scale = scale
+        self.set_stats(stats)
+        self.scale = stats['scale']
         self.pos = pos
         self.weapon = None
         self.shoot_cooldown = 0
@@ -22,6 +22,7 @@ class Player(PlayerMove, visual, specifications):
 
     def set_weapon(self, weapon):
         self.weapon = weapon
+        self.weapon.center = self.rect.center
 
     def attack(self):
         buttons = pg.mouse.get_pressed(num_buttons=3)
@@ -35,15 +36,9 @@ class Player(PlayerMove, visual, specifications):
             self.shoot_cooldown -= self.spd_atk
         if self.shoot_cooldown < 0:
             self.shoot_cooldown = 0
+
         self.attack()
         self.pos = self.move(self.pos, self.spd, self.scale)
-        ANIMATION_COOLDOWN = 100
-        if pg.time.get_ticks()-self.update_time > ANIMATION_COOLDOWN:
-            self.update_time = pg.time.get_ticks()
-            self.index = (self.index+1)%len(self.animation_list)
-            self.image = self.animation_list[self.index]
-            self.flip = pg.mouse.get_pos()[0] <= self.rect.centerx
-            if self.flip:
-                self.image = pg.transform.flip(self.image,self.flip,False)
+        self.animation()
         self.rect.center = self.pos
         self.weapon.rect.center = self.rect.center
