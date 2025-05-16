@@ -14,6 +14,7 @@ class enemy(specifications, visual):
         self.rect.center = pos
         self.screen = pg.display.get_surface()
         self.weapon = None
+        self.cd = pg.time.get_ticks()
 
     def death(self):
         self.kill()
@@ -26,11 +27,15 @@ class enemy(specifications, visual):
     def update(self):
         self.move()
         # Обновляем позицию врага
-        if not(self.rect.colliderect(self.player.rect)) and self.is_alive():
-            self.player.change_hp(-self.atk)
-            print(self.player.get_curr_hp())
-            self.rect.x += self.velocity[0]
-            self.rect.y += self.velocity[1]
+        if self.is_alive():
+            if self.rect.colliderect(self.player.rect):
+                if pg.time.get_ticks() - self.cd >= 1000*self.spd_atk:
+                    self.cd = pg.time.get_ticks()
+                    self.player.change_hp(-self.atk)
+                    print(self.player.get_curr_hp())
+            else:
+                self.rect.x += self.velocity[0]
+                self.rect.y += self.velocity[1]
 
 
 

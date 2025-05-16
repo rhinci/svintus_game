@@ -25,10 +25,10 @@ weapon_group = pg.sprite.Group()
 pos = (size[0]/2,size[1]/2)
 weapon = Weapon.Weapon("Scripts\Game\General\Assets\gun2.png",10,10,pos,all_sprites,enemy_group,weapon_group)
 weapon.set_sprite_size((100,100))
-player = Player.Player(all_sprites,player_group,1,10,10,100,pos,(200,200))
+player = Player.Player(all_sprites,player_group,1,10,10,100,pos,(100,100))
 player.set_weapon(weapon)
 #враги
-list_of_enemys = [Enemy.enemy(all_sprites,enemy_group,player,1,1,10,100,(200,200),(500,500))]
+list_of_enemys = [Enemy.enemy(all_sprites,enemy_group,player,1,1,1,100,(100,100),(100,100))]
 #спавнер
 spawner = Spawner.spawner(list_of_enemys)
 bullets = pg.sprite.Group()
