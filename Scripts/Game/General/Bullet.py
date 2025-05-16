@@ -36,6 +36,6 @@ class Bullet(pygame.sprite.Sprite):
             hit_targets = [h_t for h_t in self.targets if self.rect.colliderect(h_t.rect)]
             for hit_target in hit_targets:
                 if pygame.sprite.collide_mask(self,hit_target):
-                    hit_target.change_hp(-self.dmg)
-                    hit_target.is_dead()
-                    self.kill()
+                    if hit_target.is_alive():
+                        hit_target.change_hp(-self.dmg)
+                        self.kill()

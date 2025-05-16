@@ -15,6 +15,8 @@ class specifications:
     def is_dead(self):
         if self.curr_hp <= 0:
             self.death()
+    def is_alive(self):
+        return self.curr_hp>0
     def change_hp(self, change):
         self.curr_hp += change
         if self.curr_hp > self.max_hp:

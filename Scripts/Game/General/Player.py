@@ -13,15 +13,12 @@ class Player(PlayerMove, visual, specifications):
         self.weapon = None
         self.shoot_cooldown = 0
 
-        self.images = list()
-
-        self.images.append(pg.image.load('Scripts\Game\General\Assets\Animations\Player_idle\Player-0001.png'))
-        self.images.append(pg.image.load('Scripts\Game\General\Assets\Animations\Player_idle\Player-0002.png'))
-        self.images.append(pg.image.load('Scripts\Game\General\Assets\Animations\Player_idle\Player-0003.png'))
-        self.images.append(pg.image.load('Scripts\Game\General\Assets\Animations\Player_idle\Player-0004.png'))
-
+        self.images =["Scripts\Game\General\Assets\Animations\Player_idle\Player-0000.png",
+                      "Scripts\Game\General\Assets\Animations\Player_idle\Player-0001.png",
+                      "Scripts\Game\General\Assets\Animations\Player_idle\Player-0002.png",
+                      "Scripts\Game\General\Assets\Animations\Player_idle\Player-0003.png"]
         self.pos = pg.Vector2(pos)
-        self.set_sprite(self.images, pos,self.scale)
+        self.set_sprites(self.images,self.scale,self.pos)
 
     def set_weapon(self, weapon):
         self.weapon = weapon
@@ -40,6 +37,13 @@ class Player(PlayerMove, visual, specifications):
             self.shoot_cooldown = 0
         self.attack()
         self.pos = self.move(self.pos, self.spd, self.scale)
+        ANIMATION_COOLDOWN = 100
+        if pg.time.get_ticks()-self.update_time > ANIMATION_COOLDOWN:
+            self.update_time = pg.time.get_ticks()
+            self.index = (self.index+1)%len(self.animation_list)
+            self.image = self.animation_list[self.index]
+            self.flip = pg.mouse.get_pos()[0] <= self.rect.centerx
+            if self.flip:
+                self.image = pg.transform.flip(self.image,self.flip,False)
         self.rect.center = self.pos
-        self.rotate()
         self.weapon.rect.center = self.rect.center

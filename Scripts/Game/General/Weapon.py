@@ -1,7 +1,7 @@
 import pygame as pg
 from .Bullet import Bullet
 from pygame.math import Vector2
-
+import math as m
 
 class Weapon(pg.sprite.Sprite):
     def __init__(self, image, spd, dmg, pos,all_sprites,target_group,weapon_group):
@@ -32,9 +32,13 @@ class Weapon(pg.sprite.Sprite):
 
     def fire(self):
         if pg.mouse.get_pos()[0] <= self.rect.centerx:
-            Bullet(self.all_sprites,self.target,self.rect.midleft, self.bullet_spd, self.bullet_dmg)
+            Bullet(self.all_sprites,self.target,
+                   self.rect.midleft,
+                    self.bullet_spd, self.bullet_dmg)
         else:
-            Bullet(self.all_sprites,self.target,self.rect.midright, self.bullet_spd, self.bullet_dmg)
+             Bullet(self.all_sprites,self.target,
+                   self.rect.midright,
+                    self.bullet_spd, self.bullet_dmg)
 
     def update(self):
         self.rotate()
