@@ -5,8 +5,8 @@ import pygame as pg
 
 
 class Player(PlayerMove, visual, specifications):
-    def __init__(self,all_sprites,player_group, stats, pos):
-        super().__init__(all_sprites,player_group)
+    def __init__(self,all_sprites,player_group,mob_group, stats, pos):
+        super().__init__(all_sprites,player_group,mob_group)
         self.set_stats(stats)
         self.scale = stats['scale']
         self.pos = pos

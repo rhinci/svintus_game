@@ -16,6 +16,7 @@ class visual(pg.sprite.Sprite):
             if self.flip:
                 self.image = pg.transform.flip(self.image,self.flip,False)
 
+
     def set_sprites(self, images,scale,pos):
         self.animation_list = list()
         self.flip = False

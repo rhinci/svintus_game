@@ -4,24 +4,29 @@ from .visual import visual
 from .Explosion import explosion
 import math
 class enemy(specifications, visual):
-    def __init__(self,all_sprites,enemy_group,player, stats, pos):
-        super().__init__(all_sprites,enemy_group)
+    def __init__(self,all_sprites,enemy_group,mob_group,player, stats, pos):
+        super().__init__(all_sprites,enemy_group,mob_group)
         self.set_stats(stats)
         self.all_sprites = all_sprites
         self.enemy_group = enemy_group
-        self.images = stats['images']
+        self.mob_group = mob_group
         self.scale = stats['scale']
-        self.set_sprites(self.images,self.scale,pos)
+        self.set_sprites(stats['images'],stats['scale'],pos)
         self.player = player
         self.rect.center = pos
         self.screen = pg.display.get_surface()
         self.weapon = None
         self.atk_cd = pg.time.get_ticks()
-
     def death(self):
         explosion(self.all_sprites,self.rect.center,self.scale)
         self.kill()
-
+    def animation(self):
+        ANIMATION_COOLDOWN = 100
+        if pg.time.get_ticks()-self.update_time > ANIMATION_COOLDOWN:
+            self.update_time = pg.time.get_ticks()
+            self.index = (self.index+1)%len(self.animation_list)
+            self.image = self.animation_list[self.index]
+            self.image = pg.transform.flip(self.image,self.player.rect.centerx >= self.rect.centerx,False)
     def move(self):
         dx = self.player.pos[0] - self.rect.center[0]
         dy = self.player.pos[1] - self.rect.center[1]
@@ -43,33 +48,25 @@ class enemy(specifications, visual):
     def update(self):
         self.move()
         self.border()
+        self.animation()
         # Обновляем позицию врага
         if self.is_alive():
-            if pg.sprite.spritecollideany(self,self.all_sprites):
-                hit_targets = [h_t for h_t in self.targets if self.rect.colliderect(h_t.rect)]
-                for hit_target in hit_targets:
-                    if pg.sprite.collide_mask(self,hit_target):
-                        if hit_target.is_alive():
-                            if hit_target == self.player:
-                                self.attack()
-                            else:
-                                self.rect.x-=self.velocity[0]
-                                self.rect.y-=self.velocity[1]
-            else:
-                self.rect.x += self.velocity[0]
-                self.rect.y += self.velocity[1]
+            self.rect.x += self.velocity[0]
+            self.rect.y += self.velocity[1]
+            if pg.sprite.spritecollideany(self,self.mob_group):
+                collideds = [c for c in self.mob_group if c != self and self.rect.colliderect(c.rect) and c.is_alive()]
+                for collided in collideds:
+                    if pg.sprite.collide_rect(self,collided):
+                        dx = collided.rect.center[0] - self.rect.center[0]
+                        dy = collided.rect.center[1] - self.rect.center[1]
+                        angle = math.atan2(dy,dx)
+                        self.rect.x -= self.rect.size[0]*math.cos(angle)/50
+                        self.rect.y -= self.rect.size[1]*math.sin(angle)/100
+                        if collided == self.player:
+                            self.attack()
+
 class melee_enemy(enemy):
     def attack(self):
         if pg.time.get_ticks() - self.atk_cd >= 1000*self.spd_atk:
             self.cd = pg.time.get_ticks()
             self.player.change_hp(-self.atk)
-    def update(self):
-        self.move()
-        self.border()
-        # Обновляем позицию врага
-        if self.is_alive():
-            if self.rect.colliderect(self.player.rect):
-                self.attack()
-            else:
-                self.rect.x += self.velocity[0]
-                self.rect.y += self.velocity[1]

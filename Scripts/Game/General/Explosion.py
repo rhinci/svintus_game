@@ -1,5 +1,4 @@
 import pygame as pg
-
 class explosion(pg.sprite.Sprite):
     def __init__(self,all_sprites,pos,scale):
         super().__init__(all_sprites)

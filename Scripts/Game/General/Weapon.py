@@ -16,6 +16,7 @@ class Weapon(pg.sprite.Sprite):
         self.all_sprites = all_sprites
         self.bullet_group = pg.sprite.Group
         self.target = target_group
+        self.set_sprite_size(stats['size'])
     def rotate(self):
         direction = pg.mouse.get_pos() - Vector2(self.rect.midright)
         angle = -direction.as_polar()[1]

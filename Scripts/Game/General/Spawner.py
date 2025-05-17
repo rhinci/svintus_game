@@ -5,10 +5,11 @@ from Scripts.Game.General.configs.enemy_config import MELEE_ENEMY
 list_of_enemys = [MELEE_ENEMY]
 
 class spawner():
-    def __init__(self,all_sprites,enemy_group,player,spawn_cooldown,screen):
+    def __init__(self,all_sprites,enemy_group,mob_group,player,spawn_cooldown,screen):
         self.spawn_cooldown = spawn_cooldown*1000
         self.all_sprites = all_sprites
         self.enemy_group = enemy_group
+        self.mob_group = mob_group
         self.target = player
         self.screen = screen
         self.list_of_enemys = list_of_enemys
@@ -23,4 +24,4 @@ class spawner():
             self.update_time = pg.time.get_ticks()
             match r.choice(list_of_enemys):
                 case MELEE_ENEMY:
-                    melee_enemy(self.all_sprites,self.enemy_group,self.target,MELEE_ENEMY,self.spawn())
+                    melee_enemy(self.all_sprites,self.enemy_group,self.mob_group,self.target,MELEE_ENEMY,self.spawn())

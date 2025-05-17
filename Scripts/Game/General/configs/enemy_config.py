@@ -1,5 +1,5 @@
 MELEE_ENEMY = {
-    "images": ["Scripts\Game\General\Assets\Enemy.png"],
+    "images": ["Scripts\Game\General\Assets\spider-0001.png"],
     "atk" : 10,
     "spd_atk" : 1,
     "spd" : 1,
