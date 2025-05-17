@@ -9,18 +9,18 @@ PLAYER = {
     "animation":
     {   "idle":
         [
-        "Scripts\Game\General\Assets\Animations\Player_idle\Player-0000.png",
-        "Scripts\Game\General\Assets\Animations\Player_idle\Player-0001.png",
-        "Scripts\Game\General\Assets\Animations\Player_idle\Player-0002.png",
-        "Scripts\Game\General\Assets\Animations\Player_idle\Player-0003.png"
+        "Assets\Animations\Player_anim\Player_idle\Player-0000.png",
+        "Assets\Animations\Player_anim\Player_idle\Player-0001.png",
+        "Assets\Animations\Player_anim\Player_idle\Player-0002.png",
+        "Assets\Animations\Player_anim\Player_idle\Player-0003.png"
         ],
         "run":
         [
-        "Scripts\Game\General\Assets\Animations\Player_run\Player_run-0001.png",
-        "Scripts\Game\General\Assets\Animations\Player_run\Player_run-0002.png",
-        "Scripts\Game\General\Assets\Animations\Player_run\Player_run-0003.png",
-        "Scripts\Game\General\Assets\Animations\Player_run\Player_run-0004.png",
-        "Scripts\Game\General\Assets\Animations\Player_run\Player_run-0005.png"
+        "Assets\Animations\Player_anim\Player_run\Player_run-0001.png",
+        "Assets\Animations\Player_anim\Player_run\Player_run-0002.png",
+        "Assets\Animations\Player_anim\Player_run\Player_run-0003.png",
+        "Assets\Animations\Player_anim\Player_run\Player_run-0004.png",
+        "Assets\Animations\Player_anim\Player_run\Player_run-0005.png"
         ]
     }
 }

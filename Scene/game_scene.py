@@ -1,13 +1,10 @@
 import pygame as pg
-from Scripts.Game import Player
-from Scripts.Game import Bullet
-from Scripts.Game.General import Weapon
-from Scripts.Game.RocketLauncher import rocketlauncher
-from Scripts.Game.Mashinegun import mashineGun
-from Scripts.Game import Enemy
-from Scripts.Game import Spawner
+from Scripts.Game.General.Player import Player
+from Scripts.Game.weapon.Mashinegun import mashineGun
+from Scripts.Game.weapon.RocketLauncher import rocketlauncher
+from Scripts.Game.weapon.Mashinegun import mashineGun
+from Scripts.Game.General import Spawner
 from configs.character_config import PLAYER
-from configs.enemy_config import MELEE_ENEMY
 from configs.weapon_config import MASHINEGUN,LASERGUN,ROCKETLAUNCHER
 from configs.screen_config import SIZE,HEIGHT,WIDTH
 
@@ -27,7 +24,7 @@ mobs_group = pg.sprite.Group()
 
 #игрок
 pos = (WIDTH/2,HEIGHT/2)
-player = Player.Player(all_sprites,player_group,mobs_group,PLAYER,pos)
+player = Player(all_sprites,player_group,mobs_group,PLAYER,pos)
 mashineGun_ = mashineGun(all_sprites,mobs_group,enemy_group,weapon_group,MASHINEGUN,player.pos)
 player.set_weapon(mashineGun_)
 
