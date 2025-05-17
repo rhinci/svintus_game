@@ -1,7 +1,7 @@
 import pygame as pg
 import random as r
 from Scripts.Game.General.Enemy import enemy,melee_enemy
-from Scripts.Game.General.configs.enemy_config import MELEE_ENEMY
+from configs.enemy_config import MELEE_ENEMY
 list_of_enemys = [MELEE_ENEMY]
 
 class spawner():

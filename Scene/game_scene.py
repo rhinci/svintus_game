@@ -1,15 +1,15 @@
 import pygame as pg
-from Scripts.Game.General import Player
-from Scripts.Game.General import Bullet
+from Scripts.Game import Player
+from Scripts.Game import Bullet
 from Scripts.Game.General import Weapon
-from Scripts.Game.General.RocketLauncher import rocketlauncher
-from Scripts.Game.General.Mashinegun import mashineGun
-from Scripts.Game.General import Enemy
-from Scripts.Game.General import Spawner
-from Scripts.Game.General.configs.character_config import PLAYER
-from Scripts.Game.General.configs.enemy_config import MELEE_ENEMY
-from Scripts.Game.General.configs.weapon_config import MASHINEGUN,LASERGUN,ROCKETLAUNCHER
-from Scripts.Game.General.configs.screen_config import SIZE,HEIGHT,WIDTH
+from Scripts.Game.RocketLauncher import rocketlauncher
+from Scripts.Game.Mashinegun import mashineGun
+from Scripts.Game import Enemy
+from Scripts.Game import Spawner
+from configs.character_config import PLAYER
+from configs.enemy_config import MELEE_ENEMY
+from configs.weapon_config import MASHINEGUN,LASERGUN,ROCKETLAUNCHER
+from configs.screen_config import SIZE,HEIGHT,WIDTH
 
 #инициализация основных систем
 pg.init()
