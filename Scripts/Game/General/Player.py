@@ -13,10 +13,7 @@ class Player(PlayerMove, visual, specifications):
         self.weapon = None
         self.shoot_cooldown = 0
 
-        self.images =["Scripts\Game\General\Assets\Animations\Player_idle\Player-0000.png",
-                      "Scripts\Game\General\Assets\Animations\Player_idle\Player-0001.png",
-                      "Scripts\Game\General\Assets\Animations\Player_idle\Player-0002.png",
-                      "Scripts\Game\General\Assets\Animations\Player_idle\Player-0003.png"]
+        self.images = stats["animation"]
         self.pos = pg.Vector2(pos)
         self.set_sprites(self.images,self.scale,self.pos)
 
@@ -30,7 +27,13 @@ class Player(PlayerMove, visual, specifications):
             if buttons[0] and self.shoot_cooldown == 0:
                 self.weapon.fire()
                 self.shoot_cooldown = 50
-
+    def player_move(self):
+        if self.move_h() == 0 and self.move_v() == 0:
+            self.set_animation()
+        else:
+            self.pos = self.move(self.pos,self.spd,self.scale)
+            self.set_animation('run')
+        self.animation()
     def update(self):
         if self.shoot_cooldown > 0:
             self.shoot_cooldown -= self.spd_atk
@@ -38,7 +41,6 @@ class Player(PlayerMove, visual, specifications):
             self.shoot_cooldown = 0
 
         self.attack()
-        self.pos = self.move(self.pos, self.spd, self.scale)
-        self.animation()
+        self.player_move()
         self.rect.center = self.pos
         self.weapon.rect.center = self.rect.center

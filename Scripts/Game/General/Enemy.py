@@ -11,21 +11,23 @@ class enemy(specifications, visual):
         self.enemy_group = enemy_group
         self.mob_group = mob_group
         self.scale = stats['scale']
-        self.set_sprites(stats['images'],stats['scale'],pos)
+        self.images = stats['animation']
+        self.set_sprites(self.images,self.scale,pos)
         self.player = player
         self.rect.center = pos
         self.screen = pg.display.get_surface()
         self.weapon = None
         self.atk_cd = pg.time.get_ticks()
+        self.set_animation()
     def death(self):
         explosion(self.all_sprites,self.rect.center,self.scale)
         self.kill()
     def animation(self):
-        ANIMATION_COOLDOWN = 100
+        ANIMATION_COOLDOWN = 300
         if pg.time.get_ticks()-self.update_time > ANIMATION_COOLDOWN:
             self.update_time = pg.time.get_ticks()
-            self.index = (self.index+1)%len(self.animation_list)
-            self.image = self.animation_list[self.index]
+            self.index = (self.index+1)%len(self.images)
+            self.image = self.set_image()
             self.image = pg.transform.flip(self.image,self.player.rect.centerx >= self.rect.centerx,False)
     def move(self):
         dx = self.player.pos[0] - self.rect.center[0]
@@ -46,11 +48,11 @@ class enemy(specifications, visual):
         pass
 
     def update(self):
-        self.move()
-        self.border()
-        self.animation()
         # Обновляем позицию врага
         if self.is_alive():
+            self.move()
+            self.border()
+            self.animation()
             self.rect.x += self.velocity[0]
             self.rect.y += self.velocity[1]
             if pg.sprite.spritecollideany(self,self.mob_group):

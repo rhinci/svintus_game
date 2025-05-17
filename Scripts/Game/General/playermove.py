@@ -2,14 +2,16 @@ import pygame as pg
 
 
 class PlayerMove:
-    def move_h(self, key):
+    def move_h(self):
+        key = pg.key.get_pressed()
         if key[pg.K_a]:
             return -1
         if key[pg.K_d]:
             return 1
         return 0
 
-    def move_v(self, key):
+    def move_v(self):
+        key = pg.key.get_pressed()
         if key[pg.K_w]:
             return -1
         if key[pg.K_s]:
@@ -19,9 +21,8 @@ class PlayerMove:
     def move(self, pos, speed, size):
         border = pg.display.get_window_size()
         size = pg.Vector2(size)
-        keys = pg.key.get_pressed()
-        pos[0] += speed * self.move_h(keys)
-        pos[1] += speed * self.move_v(keys)
+        pos[0] += speed * self.move_h()
+        pos[1] += speed * self.move_v()
         if pos[0] < 0:
             pos[0] = 0
         if pos[1] < 0:

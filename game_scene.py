@@ -39,7 +39,11 @@ while running:
     all_sprites.update()
     spawner.update()
     for event in pg.event.get():
-        if event.type == pg.QUIT or event.type == pg.K_ESCAPE:
+        if event.type == pg.QUIT:
             running = False
+        if event.type == pg.KEYDOWN:
+            if event.type == pg.K_SPACE:
+                print('выход')
+                running = False
     pg.display.flip()
 pg.quit()

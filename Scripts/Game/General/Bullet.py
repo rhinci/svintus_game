@@ -12,7 +12,6 @@ class Bullet(pygame.sprite.Sprite):
         self.image = pygame.Surface((15,1))
         self.image.fill((255, 0, 0))  # Красная пуля
         self.rect = self.image.get_rect(center=start_pos)
-        print(self.angle)
         self.image = pygame.transform.rotate(self.image,math.degrees(self.angle))
 
 
