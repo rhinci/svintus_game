@@ -19,7 +19,11 @@ class Player(PlayerMove, visual, specifications):
 
     def set_weapon(self, weapon):
         self.weapon = weapon
-        self.weapon.center = self.rect.center
+
+    def change_weapon(self,weapon):
+        self.weapon.kill()
+        self.weapon = weapon
+
 
     def attack(self):
         buttons = pg.mouse.get_pressed(num_buttons=3)

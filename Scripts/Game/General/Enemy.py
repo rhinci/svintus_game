@@ -7,6 +7,7 @@ class enemy(specifications, visual):
     def __init__(self,all_sprites,enemy_group,mob_group,player, stats, pos):
         super().__init__(all_sprites,enemy_group,mob_group)
         self.set_stats(stats)
+
         self.all_sprites = all_sprites
         self.enemy_group = enemy_group
         self.mob_group = mob_group
@@ -18,9 +19,8 @@ class enemy(specifications, visual):
         self.screen = pg.display.get_surface()
         self.weapon = None
         self.atk_cd = pg.time.get_ticks()
-        self.set_animation()
     def death(self):
-        explosion(self.all_sprites,self.rect.center,self.scale)
+        explosion(self.all_sprites,self.mob_group,self.rect.center,(100,100))
         self.kill()
     def animation(self):
         ANIMATION_COOLDOWN = 300

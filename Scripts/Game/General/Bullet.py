@@ -1,7 +1,8 @@
 import pygame
 import math
+from Scripts.Game.General.Explosion import explosion
 class Bullet(pygame.sprite.Sprite):
-    def __init__(self,all_sprites,targets, start_pos, spd, dmg):
+    def __init__(self,all_sprites,targets,mob_group, start_pos, confiq):
         super().__init__(all_sprites)
         # Вычисляем угол и направление
 
@@ -9,23 +10,21 @@ class Bullet(pygame.sprite.Sprite):
         dy = pygame.mouse.get_pos()[1] - start_pos[1]
         dx = pygame.mouse.get_pos()[0] - start_pos[0]
         self.angle = math.atan2(dy,dx)
-        self.image = pygame.Surface((15,1))
-        self.image.fill((255, 0, 0))  # Красная пуля
+        self.image = pygame.transform.scale(pygame.image.load(confiq['image']),(50,50))# Красная пуля
         self.rect = self.image.get_rect(center=start_pos)
-        self.image = pygame.transform.rotate(self.image,math.degrees(self.angle))
+        print(math.degrees(self.angle))
+        self.image = pygame.transform.rotate(self.image,90+math.degrees(self.angle))
 
-
+        self.all_sprites = all_sprites
         self.targets = targets
+        self.mob_group = mob_group
         # Скорость пули
-        self.speed = spd
-        self.dmg = dmg
+        self.speed = confiq['spd']
+        self.dmg = confiq['dmg']
         # Устанавливаем начальную скорость
         self.velocity = (self.speed * math.cos(self.angle), self.speed * math.sin(self.angle))
-    def update(self):
-        # Обновляем позицию пули
-        self.rect.x += self.velocity[0]
-        self.rect.y += self.velocity[1]
 
+    def projectile_collision(self):
         # Удаляем пулю, если она вышла за экран
         if self.rect.x < 0 or self.rect.x > pygame.display.get_surface().get_width() or \
                 self.rect.y < 0 or self.rect.y > pygame.display.get_surface().get_height():
@@ -38,3 +37,9 @@ class Bullet(pygame.sprite.Sprite):
                     if hit_target.is_alive():
                         hit_target.change_hp(-self.dmg)
                         self.kill()
+    def update(self):
+        # Обновляем позицию пули
+        self.rect.x += self.velocity[0]
+        self.rect.y += self.velocity[1]
+
+        self.projectile_collision()

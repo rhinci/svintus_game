@@ -15,8 +15,8 @@ class spawner():
         self.list_of_enemys = list_of_enemys
         self.update_time = pg.time.get_ticks()
     def spawn(self):
-        x = r.randint(200,int(self.screen[0]/2))
-        y = r.randint(200,int(self.screen[1]/2))
+        x = r.randint(0,int(self.screen[0]))
+        y = r.randint(0,int(self.screen[1]))
         pos = (x,y)
         return pos
     def update(self):
