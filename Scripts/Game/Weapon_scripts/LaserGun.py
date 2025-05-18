@@ -1,11 +1,9 @@
 from Scripts.Game.Weapon_scripts.Projectiles.Bullet import bullet
 from Scripts.Game.Weapon_scripts.Weapon import weapon
-from configs.projectiles_config import LASER
 import pygame as pg
 class lasergun(weapon):
     def fire(self):
         if pg.time.get_ticks() - self.cooldown >= self.spd_atk:
             self.cooldown = pg.time.get_ticks()
             bullet(self.all_sprites,self.target,self.mob_group,
-                   self.rect.center,
-                    LASER)
+                   self.rect.center, self.projectile)

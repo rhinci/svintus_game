@@ -11,7 +11,6 @@ class bullet(pygame.sprite.Sprite):
         self.angle = math.atan2(dy,dx)
         self.image = pygame.transform.scale(pygame.image.load(confiq['image']),confiq['scale'])# Красная пуля
         self.rect = self.image.get_rect(center=start_pos)
-        print(math.degrees(self.angle))
         self.image = pygame.transform.rotate(self.image,90+math.degrees(self.angle))
 
         self.all_sprites = all_sprites

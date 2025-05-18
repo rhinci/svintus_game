@@ -41,6 +41,7 @@ def main_menu():
                 if event.button == button_instances["easy"]:
                     pygame.quit()
                     game_scene()
+                    sys.exit()
                     # точка входа в изи мод
 
                 elif event.button == button_instances["hard"]:

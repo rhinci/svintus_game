@@ -10,9 +10,8 @@ class weapon(pg.sprite.Sprite):
         self.rect = self.image.get_rect(center=pos)
         self.rect.center = pos
         self.spd_atk = stats['atk_spd']
-        self.bullet_spd = stats['bullet_spd']
-        self.bullet_dmg = stats['dmg']
-        self.cooldown = 1
+        self.cooldown = 0
+        self.projectile = stats['projectile']
         self.all_sprites = all_sprites
         self.mob_group = mob_group
         self.bullet_group = pg.sprite.Group
@@ -28,7 +27,6 @@ class weapon(pg.sprite.Sprite):
         self.orig_image = pg.transform.scale(self.orig_image, scale)
     def fire(self):
             pass
-
     def update(self):
         self.rotate()
     def draw(self,screen):

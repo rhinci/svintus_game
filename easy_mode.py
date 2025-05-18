@@ -8,12 +8,14 @@ from Scripts.Game.General import Spawner
 from configs.character_config import PLAYER
 from configs.weapon_config import MASHINEGUN,LASERGUN,ROCKETLAUNCHER
 from configs.screen_config import SIZE,HEIGHT,WIDTH
+from Scripts.Menu.canvas_class import Interface
 def game_scene():
     #инициализация основных систем
     pg.init()
     clock = pg.time.Clock()
     FPS = 60
     screen = pg.display.set_mode(SIZE)
+    interface = Interface()
     running = True
 
     #группы
@@ -26,7 +28,7 @@ def game_scene():
     #игрок
     pos = (WIDTH/2,HEIGHT/2)
     player = Player(all_sprites,player_group,mobs_group,PLAYER,pos)
-    mashineGun_ = lasergun(all_sprites,mobs_group,enemy_group,weapon_group,LASERGUN,player.pos)
+    mashineGun_ = lasergun(all_sprites,mobs_group,enemy_group,weapon_group,LASERGUN,pos)
     player.set_weapon(mashineGun_)
 
     #враги
@@ -38,6 +40,8 @@ def game_scene():
         all_sprites.draw(screen)
         all_sprites.update()
         spawner.update()
+        interface.draw_text(screen,"HP:{0}%".format(100*player.curr_hp/player.max_hp),100,50)
+        interface.draw_text(screen,"EXP:{0}".format(player.EXP),100,100)
         for event in pg.event.get():
             if event.type == pg.QUIT or event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE:
                 running = False

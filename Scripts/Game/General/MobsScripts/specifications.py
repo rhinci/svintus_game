@@ -6,6 +6,7 @@ class specifications:
         self.spd = stats['spd']
         self.max_hp = stats['max_hp']
         self.curr_hp = self.max_hp
+        self.EXP = 0
         self.tag = stats['tag']
 
     # HP
@@ -60,3 +61,7 @@ class specifications:
 
     def get_spd(self):
         return self.spd
+
+    #EXP
+    def change_exp(self, change):
+        self.EXP += change

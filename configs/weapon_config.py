@@ -1,21 +1,19 @@
+from configs.projectiles_config import BULLET,LASER,ROCKET
 MASHINEGUN = {
     "image" : "Assets\guns\gun3.png",
-    "bullet_spd" : 30,
-    "atk_spd" : 25,
-    "dmg" : 10,
-    "size" : (50,50)
+    "atk_spd" : 20,
+    "size" : (50,50),
+    "projectile" : BULLET
 }
 ROCKETLAUNCHER = {
     "image" : "Assets\guns\gun1.png",
-    "bullet_spd" : 0.01,
-    "atk_spd" : 1000,
-    "dmg" : 10,
-    "size" : (50,50)
+    "atk_spd" : 1,
+    "size" : (50,50),
+    "projectile" : ROCKET
 }
 LASERGUN = {
     "image" : "Assets\guns\gun4.png",
-    "bullet_spd" : 30,
-    "atk_spd" : 0,
-    "dmg" : 10,
-    "size" : (50,50)
+    "atk_spd" : 100,
+    "size" : (50,50),
+    "projectile" : LASER
 }
