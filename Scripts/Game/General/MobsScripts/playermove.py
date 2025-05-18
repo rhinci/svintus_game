@@ -1,5 +1,6 @@
 import pygame as pg
 
+
 class PlayerMove:
     def move_h(self):
         key = pg.key.get_pressed()
@@ -22,8 +23,8 @@ class PlayerMove:
         size = pg.Vector2(size)
         pos[0] += speed * self.move_h()
         pos[1] += speed * self.move_v()
-        if pos[0] < size[0]/2:
-            pos[0] = size[0]/2
+        if pos[0] < size[0] / 2:
+            pos[0] = size[0] / 2
         if pos[1] < size[1]:
             pos[1] = size[1]
         if pos[0] > border[0] - size[0] / 2:

@@ -4,9 +4,11 @@ from Scripts.Game.General.MobsScripts.specifications import specifications
 import pygame as pg
 import sys
 import math
+
+
 class Player(PlayerMove, visual, specifications):
-    def __init__(self,all_sprites,player_group,mob_group, stats, pos):
-        super().__init__(all_sprites,player_group,mob_group)
+    def __init__(self, all_sprites, player_group, mob_group, stats, pos):
+        super().__init__(all_sprites, player_group, mob_group)
         self.set_stats(stats)
         self.scale = stats['scale']
         self.pos = pos
@@ -15,26 +17,26 @@ class Player(PlayerMove, visual, specifications):
         self.mob_group = mob_group
         self.images = stats["animation"]
         self.pos = pg.Vector2(pos)
-        self.set_sprites(self.images,self.scale,self.pos)
+        self.set_sprites(self.images, self.scale, self.pos)
 
     def set_weapon(self, weapon):
         self.weapon = weapon
 
-    def change_weapon(self,weapon):
+    def change_weapon(self, weapon):
         self.weapon.kill()
         self.weapon = weapon
         self.shoot_cooldown = self.weapon.spd_atk
 
     def collision(self):
-        if pg.sprite.spritecollideany(self,self.mob_group):
-                collideds = [c for c in self.mob_group if c != self and self.rect.colliderect(c.rect) and c.is_alive()]
-                for collided in collideds:
-                    if pg.sprite.collide_rect(self,collided):
-                        dx = collided.rect.center[0] - self.rect.center[0]
-                        dy = collided.rect.center[1] - self.rect.center[1]
-                        angle = math.atan2(dy,dx)
-                        self.rect.x -= self.rect.size[0]*math.cos(angle)
-                        self.rect.y -= self.rect.size[1]*math.sin(angle)
+        if pg.sprite.spritecollideany(self, self.mob_group):
+            collideds = [c for c in self.mob_group if c != self and self.rect.colliderect(c.rect) and c.is_alive()]
+            for collided in collideds:
+                if pg.sprite.collide_rect(self, collided):
+                    dx = collided.rect.center[0] - self.rect.center[0]
+                    dy = collided.rect.center[1] - self.rect.center[1]
+                    angle = math.atan2(dy, dx)
+                    self.rect.x -= self.rect.size[0] * math.cos(angle)
+                    self.rect.y -= self.rect.size[1] * math.sin(angle)
 
     def death(self):
         pg.quit()
@@ -51,11 +53,11 @@ class Player(PlayerMove, visual, specifications):
         if self.move_h() == 0 and self.move_v() == 0:
             self.set_animation()
         else:
-            self.pos = self.move(self.pos,self.spd,self.scale)
+            self.pos = self.move(self.pos, self.spd, self.scale)
             self.set_animation('run')
         self.animation()
 
-    def buff_atk(self,atk):
+    def buff_atk(self, atk):
         self.weapon.projectile['dmg'] += atk
 
     def update(self):

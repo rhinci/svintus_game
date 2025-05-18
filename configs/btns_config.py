@@ -1,4 +1,4 @@
-BUTTON_DEFINITIONS = [
+MENU_BUTTON_DEFINITIONS = [
     {"name": "easy",
      "y_pos": 0.3,
      "image": "Assets\_UIMenu\Btn_easy.png",

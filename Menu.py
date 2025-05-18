@@ -2,9 +2,11 @@ import pygame
 import sys
 from Scripts.Menu.buttons_class import Button
 from configs.screen_config import SIZE, HEIGHT, WIDTH
-from configs.btns_config import BUTTON_DEFINITIONS
+from configs.btns_config import MENU_BUTTON_DEFINITIONS
 from easy_mode import easy_scene
 from hard_mode import hard_scene
+
+
 def main_menu():
     pygame.init()
 
@@ -17,7 +19,7 @@ def main_menu():
     buttons = pygame.sprite.Group()
     button_instances = {}
 
-    for btn_def in BUTTON_DEFINITIONS:
+    for btn_def in MENU_BUTTON_DEFINITIONS:
         btn = Button(screen, 0.35, btn_def["y_pos"], 0.3, 0.1, "", btn_def["image"], btn_def["hover_image"])
         buttons.add(btn)
         button_instances[btn_def["name"]] = btn
@@ -52,7 +54,7 @@ def main_menu():
                     # точка входа в хард мод
 
                 elif event.button == button_instances["weapon"]:
-                    index = (index + 1)%3
+                    index = (index + 1) % 3
 
                     # вход в меню выбора оружия
 

@@ -5,9 +5,9 @@ BUFF_BUTTON_DEFINITIONS = [
     {"name": "SPD_ATK",
      "y_pos": 0.45,
      "image": "Assets\_UIMenu\Btn_hard.png"
-    },
+     },
     {"name": "SPD",
      "y_pos": 0.6,
      "image": "Assets\_UIMenu\Btn_weapons.png"
-    }
+     }
 ]

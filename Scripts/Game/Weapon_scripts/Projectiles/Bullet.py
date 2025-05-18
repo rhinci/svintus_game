@@ -1,17 +1,18 @@
 import pygame
 import math
+
+
 class bullet(pygame.sprite.Sprite):
-    def __init__(self,all_sprites,targets,mob_group, start_pos, confiq):
+    def __init__(self, all_sprites, targets, mob_group, start_pos, confiq):
         super().__init__(all_sprites)
         # Вычисляем угол и направление
 
-
         dy = pygame.mouse.get_pos()[1] - start_pos[1]
         dx = pygame.mouse.get_pos()[0] - start_pos[0]
-        self.angle = math.atan2(dy,dx)
-        self.image = pygame.transform.scale(pygame.image.load(confiq['image']),confiq['scale'])# Красная пуля
+        self.angle = math.atan2(dy, dx)
+        self.image = pygame.transform.scale(pygame.image.load(confiq['image']), confiq['scale'])  # Красная пуля
         self.rect = self.image.get_rect(center=start_pos)
-        self.image = pygame.transform.rotate(self.image,90+math.degrees(self.angle))
+        self.image = pygame.transform.rotate(self.image, 90 + math.degrees(self.angle))
 
         self.all_sprites = all_sprites
         self.targets = targets
@@ -28,13 +29,14 @@ class bullet(pygame.sprite.Sprite):
                 self.rect.y < 0 or self.rect.y > pygame.display.get_surface().get_height():
             self.kill()
 
-        if pygame.sprite.spritecollideany(self,self.targets):
+        if pygame.sprite.spritecollideany(self, self.targets):
             hit_targets = [h_t for h_t in self.targets if self.rect.colliderect(h_t.rect)]
             for hit_target in hit_targets:
-                if pygame.sprite.collide_mask(self,hit_target):
+                if pygame.sprite.collide_mask(self, hit_target):
                     if hit_target.is_alive():
                         hit_target.change_hp(-self.dmg)
                         self.kill()
+
     def update(self):
         # Обновляем позицию пули
         self.rect.x += self.velocity[0]

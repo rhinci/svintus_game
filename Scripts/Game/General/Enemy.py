@@ -6,9 +6,11 @@ from Scripts.Game.General.ItemBox import health_pack, exp_pack
 from configs.collectables import HEALTH_PACK, EXP
 import math
 from random import randint
+
+
 class enemy(specifications, visual):
-    def __init__(self,all_sprites,enemy_group,mob_group,player, stats, pos):
-        super().__init__(all_sprites,enemy_group,mob_group)
+    def __init__(self, all_sprites, enemy_group, mob_group, player, stats, pos):
+        super().__init__(all_sprites, enemy_group, mob_group)
         self.set_stats(stats)
 
         self.all_sprites = all_sprites
@@ -16,7 +18,7 @@ class enemy(specifications, visual):
         self.mob_group = mob_group
         self.scale = stats['scale']
         self.images = stats['animation']
-        self.set_sprites(self.images,self.scale,pos)
+        self.set_sprites(self.images, self.scale, pos)
         self.player = player
         self.rect.center = pos
         self.screen = pg.display.get_surface()
@@ -24,22 +26,22 @@ class enemy(specifications, visual):
         self.atk_cd = pg.time.get_ticks()
 
     def death(self):
-        match randint(1,2):
+        match randint(1, 2):
             case 1:
-                health_pack(self.all_sprites,HEALTH_PACK,self.player,self.rect.center)
+                health_pack(self.all_sprites, HEALTH_PACK, self.player, self.rect.center)
             case 2:
-                exp_pack(self.all_sprites,EXP,self.player,self.rect.center)
+                exp_pack(self.all_sprites, EXP, self.player, self.rect.center)
 
-        explosion(self.all_sprites,self.mob_group,self.rect.center,(100,100))
+        explosion(self.all_sprites, self.mob_group, self.rect.center, (100, 100))
         self.kill()
 
     def animation(self):
         ANIMATION_COOLDOWN = 300
-        if pg.time.get_ticks()-self.update_time > ANIMATION_COOLDOWN:
+        if pg.time.get_ticks() - self.update_time > ANIMATION_COOLDOWN:
             self.update_time = pg.time.get_ticks()
-            self.index = (self.index+1)%len(self.images)
+            self.index = (self.index + 1) % len(self.images)
             self.image = self.set_image()
-            self.image = pg.transform.flip(self.image,self.player.rect.centerx >= self.rect.centerx,False)
+            self.image = pg.transform.flip(self.image, self.player.rect.centerx >= self.rect.centerx, False)
 
     def move(self):
         dx = self.player.pos[0] - self.rect.center[0]
@@ -48,10 +50,10 @@ class enemy(specifications, visual):
         self.velocity = (self.spd * math.cos(self.angle), self.spd * math.sin(self.angle))
 
     def border(self):
-        if self.rect.centerx < self.scale[0]/2:
-            self.rect.centerx = self.scale[0]/2
-        if self.rect.centery < self.scale[0]/2:
-            self.rect.centery = self.scale[0]/2
+        if self.rect.centerx < self.scale[0] / 2:
+            self.rect.centerx = self.scale[0] / 2
+        if self.rect.centery < self.scale[0] / 2:
+            self.rect.centery = self.scale[0] / 2
         if self.rect.centerx > self.screen.get_size()[0] - self.scale[0] / 2:
             self.rect.centerx = self.screen.get_size()[0] - self.scale[0] / 2
         if self.rect.centery > self.screen.get_size()[1] - self.scale[1] / 2:
@@ -61,17 +63,18 @@ class enemy(specifications, visual):
         pass
 
     def collision(self):
-        if pg.sprite.spritecollideany(self,self.mob_group):
-                collideds = [c for c in self.mob_group if c != self and self.rect.colliderect(c.rect) and c.is_alive()]
-                for collided in collideds:
-                    if pg.sprite.collide_rect(self,collided):
-                        dx = collided.rect.center[0] - self.rect.center[0]
-                        dy = collided.rect.center[1] - self.rect.center[1]
-                        angle = math.atan2(dy,dx)
-                        self.rect.x -= self.rect.size[0]*math.cos(angle)
-                        self.rect.y -= self.rect.size[1]*math.sin(angle)
-                        if collided == self.player:
-                            self.attack()
+        if pg.sprite.spritecollideany(self, self.mob_group):
+            collideds = [c for c in self.mob_group if c != self and self.rect.colliderect(c.rect) and c.is_alive()]
+            for collided in collideds:
+                if pg.sprite.collide_rect(self, collided):
+                    dx = collided.rect.center[0] - self.rect.center[0]
+                    dy = collided.rect.center[1] - self.rect.center[1]
+                    angle = math.atan2(dy, dx)
+                    self.rect.x -= self.rect.size[0] * math.cos(angle)
+                    self.rect.y -= self.rect.size[1] * math.sin(angle)
+                    if collided == self.player:
+                        self.attack()
+
     def update(self):
         # Обновляем позицию врага
         if self.is_alive():
@@ -82,8 +85,9 @@ class enemy(specifications, visual):
             self.rect.y += self.velocity[1]
             self.collision
 
+
 class melee_enemy(enemy):
     def attack(self):
-        if pg.time.get_ticks() - self.atk_cd >= 100*self.spd_atk:
+        if pg.time.get_ticks() - self.atk_cd >= 100 * self.spd_atk:
             self.cd = pg.time.get_ticks()
             self.player.change_hp(-self.atk)
