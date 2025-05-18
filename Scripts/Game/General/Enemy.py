@@ -68,8 +68,8 @@ class enemy(specifications, visual):
                         dx = collided.rect.center[0] - self.rect.center[0]
                         dy = collided.rect.center[1] - self.rect.center[1]
                         angle = math.atan2(dy,dx)
-                        self.rect.x -= self.rect.size[0]*math.cos(angle)/50
-                        self.rect.y -= self.rect.size[1]*math.sin(angle)/100
+                        self.rect.x -= self.rect.size[0]*math.cos(angle)
+                        self.rect.y -= self.rect.size[1]*math.sin(angle)
                         if collided == self.player:
                             self.attack()
     def update(self):
@@ -84,6 +84,6 @@ class enemy(specifications, visual):
 
 class melee_enemy(enemy):
     def attack(self):
-        if pg.time.get_ticks() - self.atk_cd >= 1000*self.spd_atk:
+        if pg.time.get_ticks() - self.atk_cd >= 100*self.spd_atk:
             self.cd = pg.time.get_ticks()
             self.player.change_hp(-self.atk)

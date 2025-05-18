@@ -3,7 +3,8 @@ import sys
 from Scripts.Menu.buttons_class import Button
 from configs.screen_config import SIZE, HEIGHT, WIDTH
 from configs.btns_config import BUTTON_DEFINITIONS
-from easy_mode import game_scene
+from easy_mode import easy_scene
+from hard_mode import hard_scene
 def main_menu():
     pygame.init()
 
@@ -12,7 +13,7 @@ def main_menu():
 
     background = pygame.image.load("Assets\_UIMenu\Background.png").convert()
     background = pygame.transform.scale(background, (WIDTH, HEIGHT))
-
+    index = 0
     buttons = pygame.sprite.Group()
     button_instances = {}
 
@@ -40,16 +41,19 @@ def main_menu():
             if event.type == pygame.USEREVENT:
                 if event.button == button_instances["easy"]:
                     pygame.quit()
-                    game_scene()
+                    easy_scene(index)
                     sys.exit()
                     # точка входа в изи мод
 
                 elif event.button == button_instances["hard"]:
-                    print("Hard mode selected")
+                    pygame.quit()
+                    hard_scene(index)
+                    sys.exit()
                     # точка входа в хард мод
 
                 elif event.button == button_instances["weapon"]:
-                    print("Open weapon selection")
+                    index = (index + 1)%3
+
                     # вход в меню выбора оружия
 
                 elif event.button == button_instances["exit"]:
