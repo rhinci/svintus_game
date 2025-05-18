@@ -9,7 +9,8 @@ class weapon(pg.sprite.Sprite):
         self.orig_image = self.image
         self.rect = self.image.get_rect(center=pos)
         self.rect.center = pos
-        self.bullet_spd = stats['spd']
+        self.spd_atk = stats['atk_spd']
+        self.bullet_spd = stats['bullet_spd']
         self.bullet_dmg = stats['dmg']
         self.cooldown = 1
         self.all_sprites = all_sprites

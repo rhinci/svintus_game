@@ -23,6 +23,7 @@ class Player(PlayerMove, visual, specifications):
     def change_weapon(self,weapon):
         self.weapon.kill()
         self.weapon = weapon
+        self.shoot_cooldown = self.weapon.spd_atk
 
 
     def attack(self):
@@ -30,7 +31,7 @@ class Player(PlayerMove, visual, specifications):
         if self.weapon != None:
             if buttons[0] and self.shoot_cooldown == 0:
                 self.weapon.fire()
-                self.shoot_cooldown = 50
+                self.shoot_cooldown = self.weapon.spd_atk
     def player_move(self):
         if self.move_h() == 0 and self.move_v() == 0:
             self.set_animation()
