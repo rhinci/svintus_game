@@ -9,7 +9,7 @@ from configs.character_config import PLAYER
 from configs.weapon_config import MASHINEGUN,LASERGUN,ROCKETLAUNCHER
 from configs.screen_config import SIZE,HEIGHT,WIDTH
 from Scripts.Menu.canvas_class import Interface
-def easy_scene(num):
+def hard_scene(num):
     #инициализация основных систем
     pg.init()
     clock = pg.time.Clock()
