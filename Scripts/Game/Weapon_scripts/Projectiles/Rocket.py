@@ -1,7 +1,7 @@
 import pygame
 from Scripts.Game.Weapon_scripts.Explosion import explosion
-from Scripts.Game.Weapon_scripts.Projectiles.Bullet import bullet
-class Rocket(bullet):
+from Scripts.Game.Weapon_scripts.Projectiles import Bullet
+class Rocket(Bullet.bullet):
     def projectile_collision(self):
         if self.rect.x < 0 or self.rect.x > pygame.display.get_surface().get_width() or \
                 self.rect.y < 0 or self.rect.y > pygame.display.get_surface().get_height():

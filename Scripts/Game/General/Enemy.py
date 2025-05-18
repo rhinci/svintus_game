@@ -1,7 +1,7 @@
 import pygame as pg
-from .specifications import specifications
-from .visual import visual
-from .Explosion import explosion
+from Scripts.Game.General.MobsScripts.specifications import specifications
+from .MobsScripts.visual import visual
+from Scripts.Game.Weapon_scripts.Explosion import explosion
 import math
 class enemy(specifications, visual):
     def __init__(self,all_sprites,enemy_group,mob_group,player, stats, pos):

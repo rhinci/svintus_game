@@ -9,7 +9,7 @@ WIDTH, HEIGHT = 1080, 720
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Rusostrus")
 
-background = pygame.image.load("Assets/Background.png").convert()
+background = pygame.image.load("Assets\_UIMenu\Background.png").convert()
 background = pygame.transform.scale(background, (WIDTH, HEIGHT))
 
 

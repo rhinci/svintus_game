@@ -1,10 +1,8 @@
 import pygame as pg
-from .Bullet import Bullet
 from pygame.math import Vector2
-from Scripts.Game.General.Rocket import Rocket
 import math as m
 
-class Weapon(pg.sprite.Sprite):
+class weapon(pg.sprite.Sprite):
     def __init__(self, all_sprites,mob_group,target_group,weapon_group,stats,pos = (0,0)):
         super().__init__(all_sprites,weapon_group)
         self.image = pg.image.load(stats['image'])
@@ -28,9 +26,7 @@ class Weapon(pg.sprite.Sprite):
     def set_sprite_size(self, scale):
         self.orig_image = pg.transform.scale(self.orig_image, scale)
     def fire(self):
-            Bullet(self.all_sprites,self.target,self.mob_group,
-                   self.rect.center,
-                    self.bullet_spd, self.bullet_dmg)
+            pass
 
     def update(self):
         self.rotate()

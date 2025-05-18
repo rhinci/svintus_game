@@ -11,7 +11,7 @@ class explosion(pg.sprite.Sprite):
         self.update_time = pg.time.get_ticks()
 
         for i in range (6):
-            img = pg.image.load("Scripts\Game\General\Assets\Animations\Explosion\{0}.png".format(i+1))
+            img = pg.image.load("Assets\Animations\effects\Explosion\{0}.png".format(i+1))
             img = pg.transform.scale(img,(scale[0]*2,scale[1]*2))
             self.animation_list.append(img)
         self.image = self.animation_list[self.index]

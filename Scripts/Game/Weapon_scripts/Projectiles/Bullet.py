@@ -1,7 +1,6 @@
 import pygame
 import math
-from Scripts.Game.General.Explosion import explosion
-class Bullet(pygame.sprite.Sprite):
+class bullet(pygame.sprite.Sprite):
     def __init__(self,all_sprites,targets,mob_group, start_pos, confiq):
         super().__init__(all_sprites)
         # Вычисляем угол и направление

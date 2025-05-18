@@ -1,6 +1,6 @@
-from .playermove import PlayerMove
-from .visual import visual
-from .specifications import specifications
+from Scripts.Game.General.MobsScripts.playermove import PlayerMove
+from Scripts.Game.General.MobsScripts.visual import visual
+from Scripts.Game.General.MobsScripts.specifications import specifications
 import pygame as pg
 
 
