@@ -28,8 +28,7 @@ def game_scene():
     #игрок
     pos = (WIDTH/2,HEIGHT/2)
     player = Player(all_sprites,player_group,mobs_group,PLAYER,pos)
-    mashineGun_ = lasergun(all_sprites,mobs_group,enemy_group,weapon_group,LASERGUN,pos)
-    player.set_weapon(mashineGun_)
+    player.set_weapon(mashineGun(all_sprites,mobs_group,enemy_group,weapon_group,MASHINEGUN,player.pos))
 
     #враги
     spawner = Spawner.spawner(all_sprites,enemy_group,mobs_group,player,1,SIZE)
@@ -42,6 +41,7 @@ def game_scene():
         spawner.update()
         interface.draw_text(screen,"HP:{0}%".format(100*player.curr_hp/player.max_hp),100,50)
         interface.draw_text(screen,"EXP:{0}".format(player.EXP),100,100)
+        interface.draw_text(screen,"ATK:{0}".format(player.weapon.projectile['dmg']),100,150)
         for event in pg.event.get():
             if event.type == pg.QUIT or event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE:
                 running = False
@@ -50,5 +50,7 @@ def game_scene():
                     player.change_weapon(mashineGun(all_sprites,mobs_group,enemy_group,weapon_group,MASHINEGUN,player.pos))
                 if event.key == pg.K_2:
                     player.change_weapon(rocketlauncher(all_sprites,mobs_group,enemy_group,weapon_group,ROCKETLAUNCHER,player.pos))
+                if event.key == pg.K_3:
+                    player.change_weapon(lasergun(all_sprites,mobs_group,enemy_group,weapon_group,LASERGUN,pos))
         pg.display.flip()
     pg.quit()

@@ -68,3 +68,7 @@ class Player(PlayerMove, visual, specifications):
         self.player_move()
         self.rect.center = self.pos
         self.weapon.rect.center = self.rect.center
+
+        if (self.EXP % 50 == 0 and self.EXP != 0):
+            self.EXP = 0
+            self.buff_atk(10)
