@@ -15,7 +15,7 @@ ROCKETLAUNCHER = {
 LASERGUN = {
     "image" : "Assets\guns\gun4.png",
     "bullet_spd" : 30,
-    "atk_spd" : 1,
+    "atk_spd" : 0,
     "dmg" : 10,
     "size" : (50,50)
 }

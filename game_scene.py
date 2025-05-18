@@ -3,6 +3,7 @@ from Scripts.Game.General.Player import Player
 from Scripts.Game.Weapon_scripts.Mashinegun import mashineGun
 from Scripts.Game.Weapon_scripts.RocketLauncher import rocketlauncher
 from Scripts.Game.Weapon_scripts.Mashinegun import mashineGun
+from Scripts.Game.Weapon_scripts.LaserGun import lasergun
 from Scripts.Game.General import Spawner
 from configs.character_config import PLAYER
 from configs.weapon_config import MASHINEGUN,LASERGUN,ROCKETLAUNCHER
@@ -25,7 +26,7 @@ mobs_group = pg.sprite.Group()
 #игрок
 pos = (WIDTH/2,HEIGHT/2)
 player = Player(all_sprites,player_group,mobs_group,PLAYER,pos)
-mashineGun_ = mashineGun(all_sprites,mobs_group,enemy_group,weapon_group,MASHINEGUN,player.pos)
+mashineGun_ = lasergun(all_sprites,mobs_group,enemy_group,weapon_group,LASERGUN,player.pos)
 player.set_weapon(mashineGun_)
 
 #враги
