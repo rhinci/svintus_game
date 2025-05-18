@@ -9,7 +9,7 @@ from configs.character_config import PLAYER
 from configs.weapon_config import MASHINEGUN,LASERGUN,ROCKETLAUNCHER
 from configs.screen_config import SIZE,HEIGHT,WIDTH
 from Scripts.Menu.canvas_class import Interface
-def easy_scene(num):
+def hard_scene(num):
     #инициализация основных систем
     pg.init()
     clock = pg.time.Clock()
@@ -37,24 +37,20 @@ def easy_scene(num):
             player.set_weapon(lasergun(all_sprites,mobs_group,enemy_group,weapon_group,LASERGUN,pos))
     #враги
     spawner = Spawner.spawner(all_sprites,enemy_group,mobs_group,player,1,SIZE)
-    player.curr_hp = 50
+
     while running:
         clock.tick(FPS)
         screen.fill((0,0,0))
         all_sprites.draw(screen)
         all_sprites.update()
         spawner.update()
-        interface.draw_button(screen,"",(255,0,0),0,HEIGHT-50, WIDTH,50)
-        interface.draw_button(screen,"",(0,255,0),0,HEIGHT-50, WIDTH*player.curr_hp/player.max_hp,50)
-        interface.draw_button(screen,"",(0,183,235),0,HEIGHT-75, WIDTH*player.EXP/50,25)
-        interface.draw_text(screen,"HP",WIDTH/2,HEIGHT-50)
-        interface.draw_text(screen,"EXP",WIDTH/2,HEIGHT-75)
+        interface.draw_text(screen,"HP:{0}%".format(100*player.curr_hp/player.max_hp),100,50)
+        interface.draw_text(screen,"EXP:{0}".format(player.EXP),100,100)
         interface.draw_text(screen,"ATK:{0}".format(player.weapon.projectile['dmg']),100,150)
         interface.draw_text(screen,"{0} min: {1} sec".format(pg.time.get_ticks()//36000,(pg.time.get_ticks()//600)%60),WIDTH/2,20)
         for event in pg.event.get():
             if (event.type == pg.QUIT or
-                event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE or
-                pg.time.get_ticks()//36000 == 10 and (pg.time.get_ticks()//600)%60 == 0):
+                event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE):
                 running = False
         pg.display.flip()
     pg.quit()

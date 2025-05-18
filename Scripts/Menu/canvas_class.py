@@ -16,7 +16,6 @@ class Interface:
         text_surface = self.font.render(text, True, self.text_color)
         screen.blit(text_surface, (x, y))
 
-    def draw_button(self, screen, text, x, y, width, height):
-        button_color = (100, 100, 100)
-        pygame.draw.rect(screen, button_color, (x, y, width, height))
+    def draw_button(self, screen, text,color, x, y, width, height):
+        pygame.draw.rect(screen, color, (x, y, width, height))
         self.draw_text(screen, text, x + 10, y + 10)
