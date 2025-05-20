@@ -66,10 +66,7 @@ class enemy(specifications, visual):
         if pg.sprite.spritecollideany(self, self.mob_group):
             collideds = [c for c in self.mob_group if c != self and self.rect.colliderect(c.rect) and c.is_alive()]
             for collided in collideds:
-                if pg.sprite.collide_rect(self, collided):
-                    dx = collided.rect.center[0] - self.rect.center[0]
-                    dy = collided.rect.center[1] - self.rect.center[1]
-                    angle = math.atan2(dy, dx)
+                if pg.sprite.collide_mask(self, collided):
                     self.rect.x -= self.velocity[0]
                     self.rect.y -= self.velocity[1]
                     if collided == self.player:

@@ -14,5 +14,18 @@ LASER = {
     "spd": 10,
     "dmg": 10,
     "image": "Assets\projectiles\LaserProjectile.png",
-    "scale": (21, 11)
+    "scale": (23, 23)
+}
+FIRE = {
+    "spd": 5,
+    "dmg": 5,
+    "image": "Assets\projectiles\Fire.png",
+    "time" : 600,
+    "scale":(15,15)
+}
+LASERBEAM = {
+    "spd": 10,
+    "dmg": 10,
+    "image": "Assets\projectiles\LaserBeam.png",
+    "scale": (23, 23)
 }

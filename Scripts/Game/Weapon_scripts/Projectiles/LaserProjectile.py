@@ -1,7 +1,7 @@
 import pygame
 from Scripts.Game.Weapon_scripts.Projectiles.Bullet import bullet
 
-class laserbeam(bullet):
+class laserprojectile(bullet):
     def projectile_collision(self):
         # Удаляем пулю, если она вышла за экран
         if self.rect.x < 0 or self.rect.x > pygame.display.get_surface().get_width() or \
@@ -14,4 +14,3 @@ class laserbeam(bullet):
                 if pygame.sprite.collide_mask(self, hit_target):
                     if hit_target.is_alive():
                         hit_target.change_hp(-self.dmg)
-                        self.kill()

@@ -11,7 +11,7 @@ class weapon(pg.sprite.Sprite):
         self.rect = self.image.get_rect(center=pos)
         self.rect.center = pos
         self.spd_atk = stats['atk_spd']
-        self.cooldown = 0
+        self.cooldown = pg.time.get_ticks()
         self.projectile = stats['projectile']
         self.all_sprites = all_sprites
         self.mob_group = mob_group

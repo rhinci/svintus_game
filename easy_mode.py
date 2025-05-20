@@ -2,17 +2,19 @@ import pygame as pg
 from Scripts.Game.General.Player import Player
 from Scripts.Game.Weapon_scripts.Mashinegun import mashineGun
 from Scripts.Game.Weapon_scripts.RocketLauncher import rocketlauncher
+from Scripts.Game.Weapon_scripts.Blaster import lasergun
+from Scripts.Game.Weapon_scripts.FireThrower import firethrower
 from Scripts.Game.Weapon_scripts.LaserGun import lasergun
 from Scripts.Game.General import Spawner
 from configs.character_config import PLAYER
-from configs.weapon_config import MASHINEGUN, LASERGUN, ROCKETLAUNCHER
+from configs.weapon_config import MASHINEGUN, BLASTER, ROCKETLAUNCHER, FIRETHROWER, LASERGUN
 from configs.screen_config import SIZE, HEIGHT, WIDTH
 from Scripts.Menu.canvas_class import Interface
 from Scripts.Menu.buttons_class import Button
 from configs.pause_btns_config import PAUSE_BUTTON_DEFINITIONS
 from configs.music import MUSIC
 
-def easy_scene(num):
+def easy_scene(index):
     # инициализация основных систем
     pg.init()
     pg.mixer.init()
@@ -37,13 +39,17 @@ def easy_scene(num):
     # игрок
     pos = (WIDTH / 2, HEIGHT / 2)
     player = Player(all_sprites, player_group, mobs_group, PLAYER, pos)
-    match num:
+    match index:
         case 0:
             player.set_weapon(mashineGun(all_sprites, mobs_group, enemy_group, weapon_group, MASHINEGUN, player.pos))
         case 1:
             player.set_weapon(rocketlauncher(all_sprites, mobs_group, enemy_group, weapon_group, ROCKETLAUNCHER, player.pos))
         case 2:
-            player.set_weapon(lasergun(all_sprites, mobs_group, enemy_group, weapon_group, LASERGUN, pos))
+            player.set_weapon(lasergun(all_sprites, mobs_group, enemy_group, weapon_group, BLASTER, player.pos))
+        case 3:
+            player.set_weapon(firethrower(all_sprites,mobs_group,enemy_group,weapon_group, FIRETHROWER,player.pos))
+        case 4:
+            player.set_weapon(lasergun(all_sprites,mobs_group,enemy_group,weapon_group, LASERGUN,player.pos))
     # враги
     spawner = Spawner.spawner(all_sprites, enemy_group, mobs_group, player, 1, SIZE)
     player.curr_hp = 50
@@ -92,7 +98,7 @@ def easy_scene(num):
                     if event.key == pg.K_2:
                         player.change_weapon(rocketlauncher(all_sprites, mobs_group, enemy_group, weapon_group, ROCKETLAUNCHER, player.pos))
                     if event.key == pg.K_3:
-                        player.change_weapon(lasergun(all_sprites, mobs_group, enemy_group, weapon_group, LASERGUN, pos))
+                        player.change_weapon(lasergun(all_sprites, mobs_group, enemy_group, weapon_group, BLASTER, pos))
 
             # Обработка кнопок паузы
             if paused:

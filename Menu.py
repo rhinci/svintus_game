@@ -62,7 +62,7 @@ def main_menu():
                     # точка входа в хард мод
 
                 elif event.button == button_instances["weapon"]:
-                    index = (index + 1) % 3
+                    index = (index + 1) % 5
 
                     # вход в меню выбора оружия
 
