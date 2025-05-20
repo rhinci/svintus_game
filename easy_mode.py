@@ -25,6 +25,7 @@ def easy_scene(num):
     paused = False
     pg.mixer.music.load(MUSIC['musicgame'])
     pg.mixer.music.play(-1)
+    timer = pg.time.get_ticks()
 
     # группы
     all_sprites = pg.sprite.Group()
@@ -68,7 +69,7 @@ def easy_scene(num):
             interface.draw_text(screen, "HP", WIDTH / 2, HEIGHT - 50)
             interface.draw_text(screen, "EXP", WIDTH / 2, HEIGHT - 75)
             interface.draw_text(screen, "ATK:{0}".format(player.weapon.projectile['dmg']), 100, 150)
-            interface.draw_text(screen, "{0} min: {1} sec".format(pg.time.get_ticks() // 36000, (pg.time.get_ticks() // 600) % 60), WIDTH / 2, 20)
+            interface.draw_text(screen, "{0} min: {1} sec".format((pg.time.get_ticks()-timer) // 36000, ((pg.time.get_ticks()-timer) // 600) % 60), WIDTH / 2, 20)
 
         else:
             s = pg.Surface(SIZE, pg.SRCALPHA)
@@ -78,11 +79,11 @@ def easy_scene(num):
             pause_buttons.draw(screen)
 
         for event in pg.event.get():
-            if event.type == pg.QUIT or (event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE):
+            if event.type == pg.QUIT:
                 running = False
 
             if event.type == pg.KEYDOWN:
-                if event.key == pg.K_p:
+                if event.key == pg.K_p or event.key == pg.K_ESCAPE:
                     paused = not paused
 
                 if not paused:
@@ -105,11 +106,10 @@ def easy_scene(num):
                             if button == button_instances["resume"]:
                                 paused = False
                             elif button == button_instances["main_menu"]:
-                                pg.quit()
+                                running = False
                                 return "main_menu" # нужно переходить в меню
                             elif button == button_instances["exit"]:
                                 running = False
 
         pg.display.flip()
     pg.mixer.music.unload()
-    pg.quit()

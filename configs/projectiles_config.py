@@ -13,6 +13,6 @@ ROCKET = {
 LASER = {
     "spd": 10,
     "dmg": 10,
-    "image": "Assets\projectiles\LaserBeam.png",
-    "scale": (25, 25)
+    "image": "Assets\projectiles\LaserProjectile.png",
+    "scale": (21, 11)
 }

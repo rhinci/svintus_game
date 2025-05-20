@@ -6,7 +6,7 @@ from Scripts.Menu.buttons_class import Button
 from configs.screen_config import SIZE, HEIGHT, WIDTH
 from configs.btns_config import MENU_BUTTON_DEFINITIONS
 from configs.music import MUSIC
-from test import easy_scene
+from easy_mode import easy_scene
 from hard_mode import hard_scene
 
 
