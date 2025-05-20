@@ -10,17 +10,21 @@ from configs.screen_config import SIZE, HEIGHT, WIDTH
 from Scripts.Menu.canvas_class import Interface
 from Scripts.Menu.buttons_class import Button
 from configs.pause_btns_config import PAUSE_BUTTON_DEFINITIONS
+from configs.music import MUSIC
 
-
-def easy_scene(num):
+def hard_scene(num):
     # инициализация основных систем
     pg.init()
+    pg.mixer.init()
+
     clock = pg.time.Clock()
     FPS = 60
     screen = pg.display.set_mode(SIZE)
     interface = Interface()
     running = True
     paused = False
+    pg.mixer.music.load(MUSIC['musicgame'])
+    pg.mixer.music.play(-1)
 
     # группы
     all_sprites = pg.sprite.Group()
@@ -107,4 +111,4 @@ def easy_scene(num):
                                 running = False
 
         pg.display.flip()
-    pg.quit()
+    pg.mixer.music.unload()

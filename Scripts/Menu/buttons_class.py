@@ -1,6 +1,4 @@
 import pygame
-
-
 class Button(pygame.sprite.Sprite):
     def __init__(self, screen, x_percent, y_percent, width_percent, height_percent,
                  text, image_path, hover_image_path=None, sound_path=None):

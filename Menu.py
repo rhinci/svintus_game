@@ -1,17 +1,23 @@
 import pygame
 import sys
+
+import pygame.mixer_music
 from Scripts.Menu.buttons_class import Button
 from configs.screen_config import SIZE, HEIGHT, WIDTH
 from configs.btns_config import MENU_BUTTON_DEFINITIONS
-from easy_mode import easy_scene
+from configs.music import MUSIC
+from test import easy_scene
 from hard_mode import hard_scene
 
 
 def main_menu():
     pygame.init()
+    pygame.mixer.init()
 
     screen = pygame.display.set_mode(SIZE)
     pygame.display.set_caption("Rusostrus")
+    pygame.mixer.music.load(MUSIC['musicmenu'])
+    pygame.mixer.music.play(-1)
 
     background = pygame.image.load("Assets\_UIMenu\Background.png").convert()
     background = pygame.transform.scale(background, (WIDTH, HEIGHT))
@@ -42,15 +48,17 @@ def main_menu():
 
             if event.type == pygame.USEREVENT:
                 if event.button == button_instances["easy"]:
-                    pygame.quit()
+                    pygame.mixer.music.unload
                     easy_scene(index)
-                    sys.exit()
+                    pygame.mixer.music.load(MUSIC['musicmenu'])
+                    pygame.mixer.music.play(-1)
                     # точка входа в изи мод
 
                 elif event.button == button_instances["hard"]:
-                    pygame.quit()
+                    pygame.mixer.music.unload
                     hard_scene(index)
-                    sys.exit()
+                    pygame.mixer.music.load(MUSIC['musicmenu'])
+                    pygame.mixer.music.play(-1)
                     # точка входа в хард мод
 
                 elif event.button == button_instances["weapon"]:
