@@ -70,6 +70,8 @@ def easy_scene(index):
     while running:
         clock.tick(FPS)
         screen.fill((0, 0, 0))
+        if not(player.is_alive()):
+            break
         if not paused:
             all_sprites.draw(screen)
             all_sprites.update()
@@ -130,4 +132,6 @@ def easy_scene(index):
                                 running = False
 
         pg.display.flip()
+    if player.is_alive():
+        player.death()
     pg.mixer.music.unload()

@@ -2,7 +2,7 @@ import pygame as pg
 from Scripts.Game.General.Player import Player
 from Scripts.Game.Weapon_scripts.Mashinegun import mashineGun
 from Scripts.Game.Weapon_scripts.RocketLauncher import rocketlauncher
-from Scripts.Game.Weapon_scripts.Blaster import lasergun
+from Scripts.Game.Weapon_scripts.Blaster import blaster
 from Scripts.Game.General import Spawner
 from configs.character_config import PLAYER
 from configs.weapon_config import MASHINEGUN, LASERGUN, ROCKETLAUNCHER
@@ -42,7 +42,7 @@ def easy_scene(num):
             player.set_weapon(
                 rocketlauncher(all_sprites, mobs_group, enemy_group, weapon_group, ROCKETLAUNCHER, player.pos))
         case 2:
-            player.set_weapon(lasergun(all_sprites, mobs_group, enemy_group, weapon_group, LASERGUN, pos))
+            player.set_weapon(blaster(all_sprites, mobs_group, enemy_group, weapon_group, LASERGUN, pos))
     # враги
     spawner = Spawner.spawner(all_sprites, enemy_group, mobs_group, player, 1, SIZE)
     player.curr_hp = 50

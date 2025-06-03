@@ -18,7 +18,7 @@ class specifications:
 
     def is_dead(self):
         if self.curr_hp <= 0:
-            self.death()  # Теперь death() удалит спрайт
+            self.death()
             return True
         return False
 
