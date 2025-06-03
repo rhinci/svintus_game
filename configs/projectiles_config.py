@@ -21,7 +21,7 @@ FIRE = {
     "dmg": 5,
     "image": "Assets\projectiles\Fire.png",
     "time" : 600,
-    "scale":(15,15)
+    "scale":(40,40)
 }
 LASERBEAM = {
     "spd": 50,

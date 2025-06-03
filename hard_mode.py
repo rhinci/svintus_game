@@ -2,19 +2,18 @@ import pygame as pg
 from Scripts.Game.General.Player import Player
 from Scripts.Game.Weapon_scripts.Mashinegun import mashineGun
 from Scripts.Game.Weapon_scripts.RocketLauncher import rocketlauncher
-from Scripts.Game.Weapon_scripts.Blaster import blaster
-from Scripts.Game.Weapon_scripts.FireThrower import firethrower
 from Scripts.Game.Weapon_scripts.LaserGun import lasergun
 from Scripts.Game.General import Spawner
 from configs.character_config import PLAYER
-from configs.weapon_config import MASHINEGUN, BLASTER, ROCKETLAUNCHER, FIRETHROWER, LASERGUN
+from configs.weapon_config import MASHINEGUN, LASERGUN, ROCKETLAUNCHER
 from configs.screen_config import SIZE, HEIGHT, WIDTH
 from Scripts.Menu.canvas_class import Interface
 from Scripts.Menu.buttons_class import Button
 from configs.pause_btns_config import PAUSE_BUTTON_DEFINITIONS
 from configs.music import MUSIC
 
-def hard_scene(index):
+
+def hard_scene(num):
     # инициализация основных систем
     pg.init()
     pg.mixer.init()
@@ -27,7 +26,6 @@ def hard_scene(index):
     paused = False
     pg.mixer.music.load(MUSIC['musicgame'])
     pg.mixer.music.play(-1)
-    timer = pg.time.get_ticks()
 
     # группы
     all_sprites = pg.sprite.Group()
@@ -39,17 +37,14 @@ def hard_scene(index):
     # игрок
     pos = (WIDTH / 2, HEIGHT / 2)
     player = Player(all_sprites, player_group, mobs_group, PLAYER, pos)
-    match index:
+    match num:
         case 0:
             player.set_weapon(mashineGun(all_sprites, mobs_group, enemy_group, weapon_group, MASHINEGUN, player.pos))
         case 1:
-            player.set_weapon(rocketlauncher(all_sprites, mobs_group, enemy_group, weapon_group, ROCKETLAUNCHER, player.pos))
+            player.set_weapon(
+                rocketlauncher(all_sprites, mobs_group, enemy_group, weapon_group, ROCKETLAUNCHER, player.pos))
         case 2:
-            player.set_weapon(blaster(all_sprites, mobs_group, enemy_group, weapon_group, BLASTER, player.pos))
-        case 3:
-            player.set_weapon(firethrower(all_sprites,mobs_group,enemy_group,weapon_group, FIRETHROWER,player.pos))
-        case 4:
-            player.set_weapon(lasergun(all_sprites,mobs_group,enemy_group,weapon_group, LASERGUN,player.pos))
+            player.set_weapon(lasergun(all_sprites, mobs_group, enemy_group, weapon_group, LASERGUN, pos))
     # враги
     spawner = Spawner.spawner(all_sprites, enemy_group, mobs_group, player, 1, SIZE)
     player.curr_hp = 50
@@ -75,7 +70,8 @@ def hard_scene(index):
             interface.draw_text(screen, "HP", WIDTH / 2, HEIGHT - 50)
             interface.draw_text(screen, "EXP", WIDTH / 2, HEIGHT - 75)
             interface.draw_text(screen, "ATK:{0}".format(player.weapon.projectile['dmg']), 100, 150)
-            interface.draw_text(screen, "{0} min: {1} sec".format((pg.time.get_ticks()-timer) // 36000, ((pg.time.get_ticks()-timer) // 600) % 60), WIDTH / 2, 20)
+            interface.draw_text(screen, "{0} min: {1} sec".format(pg.time.get_ticks() // 36000,
+                                                                  (pg.time.get_ticks() // 600) % 60), WIDTH / 2, 20)
 
         else:
             s = pg.Surface(SIZE, pg.SRCALPHA)
@@ -85,20 +81,24 @@ def hard_scene(index):
             pause_buttons.draw(screen)
 
         for event in pg.event.get():
-            if event.type == pg.QUIT:
+            if event.type == pg.QUIT or (event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE):
                 running = False
 
             if event.type == pg.KEYDOWN:
-                if event.key == pg.K_p or event.key == pg.K_ESCAPE:
+                if event.key == pg.K_p:
                     paused = not paused
 
                 if not paused:
                     if event.key == pg.K_1:
-                        player.change_weapon(mashineGun(all_sprites, mobs_group, enemy_group, weapon_group, MASHINEGUN, player.pos))
+                        player.change_weapon(
+                            mashineGun(all_sprites, mobs_group, enemy_group, weapon_group, MASHINEGUN, player.pos))
                     if event.key == pg.K_2:
-                        player.change_weapon(rocketlauncher(all_sprites, mobs_group, enemy_group, weapon_group, ROCKETLAUNCHER, player.pos))
+                        player.change_weapon(
+                            rocketlauncher(all_sprites, mobs_group, enemy_group, weapon_group, ROCKETLAUNCHER,
+                                           player.pos))
                     if event.key == pg.K_3:
-                        player.change_weapon(lasergun(all_sprites, mobs_group, enemy_group, weapon_group, BLASTER, pos))
+                        player.change_weapon(
+                            lasergun(all_sprites, mobs_group, enemy_group, weapon_group, LASERGUN, pos))
 
             # Обработка кнопок паузы
             if paused:
@@ -112,8 +112,8 @@ def hard_scene(index):
                             if button == button_instances["resume"]:
                                 paused = False
                             elif button == button_instances["main_menu"]:
-                                running = False
-                                return "main_menu" # нужно переходить в меню
+                                pg.quit()
+                                return "main_menu"  # нужно переходить в меню
                             elif button == button_instances["exit"]:
                                 running = False
 
