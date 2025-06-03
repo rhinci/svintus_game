@@ -38,7 +38,8 @@ class range_enemy(enemy):
             new_direction[0] * retreat_speed,
             new_direction[1] * retreat_speed
         ]
-
+        self.rect.x += self.velocity[0]
+        self.rect.y += self.velocity[1]
 
     # Если здоровье восстановлено выше порога - выходим из режима отступления
         if self.curr_hp > self.max_hp * (self.retreat_threshold + 0.1):  # +10% гистерезис
