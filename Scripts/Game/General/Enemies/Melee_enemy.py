@@ -1,5 +1,7 @@
 from Scripts.Game.General.Enemies.Enemy import enemy
 import pygame as pg
+
+
 class melee_enemy(enemy):
     def attack(self):
         if pg.time.get_ticks() - self.atk_cd >= 100 * self.spd_atk:
