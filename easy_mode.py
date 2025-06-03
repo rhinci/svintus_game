@@ -2,7 +2,7 @@ import pygame as pg
 from Scripts.Game.General.Player import Player
 from Scripts.Game.Weapon_scripts.Mashinegun import mashineGun
 from Scripts.Game.Weapon_scripts.RocketLauncher import rocketlauncher
-from Scripts.Game.Weapon_scripts.Blaster import lasergun
+from Scripts.Game.Weapon_scripts.Blaster import blaster
 from Scripts.Game.Weapon_scripts.FireThrower import firethrower
 from Scripts.Game.Weapon_scripts.LaserGun import lasergun
 from Scripts.Game.General import Spawner
@@ -27,6 +27,7 @@ def easy_scene(index):
     paused = False
     pg.mixer.music.load(MUSIC['musicgame'])
     pg.mixer.music.play(-1)
+    pg.mixer.music.set_volume(0.01)
     timer = pg.time.get_ticks()
 
     # группы
@@ -45,7 +46,7 @@ def easy_scene(index):
         case 1:
             player.set_weapon(rocketlauncher(all_sprites, mobs_group, enemy_group, weapon_group, ROCKETLAUNCHER, player.pos))
         case 2:
-            player.set_weapon(lasergun(all_sprites, mobs_group, enemy_group, weapon_group, BLASTER, player.pos))
+            player.set_weapon(blaster(all_sprites, mobs_group, enemy_group, weapon_group, BLASTER, player.pos))
         case 3:
             player.set_weapon(firethrower(all_sprites,mobs_group,enemy_group,weapon_group, FIRETHROWER,player.pos))
         case 4:
@@ -64,7 +65,7 @@ def easy_scene(index):
 
     while running:
         clock.tick(FPS)
-        screen.fill((0, 0, 0))
+        screen.fill((0,0,0))
         if not paused:
             all_sprites.draw(screen)
             all_sprites.update()

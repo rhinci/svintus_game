@@ -2,7 +2,7 @@ import pygame as pg
 from Scripts.Game.General.Player import Player
 from Scripts.Game.Weapon_scripts.Mashinegun import mashineGun
 from Scripts.Game.Weapon_scripts.RocketLauncher import rocketlauncher
-from Scripts.Game.Weapon_scripts.LaserGun import lasergun
+from Scripts.Game.Weapon_scripts.Blaster import lasergun
 from Scripts.Game.General import Spawner
 from configs.character_config import PLAYER
 from configs.weapon_config import MASHINEGUN, LASERGUN, ROCKETLAUNCHER

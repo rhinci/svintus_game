@@ -18,7 +18,7 @@ def main_menu():
     pygame.display.set_caption("Rusostrus")
     pygame.mixer.music.load(MUSIC['musicmenu'])
     pygame.mixer.music.play(-1)
-
+    pygame.mixer.music.set_volume(0.1)
     background = pygame.image.load("Assets\_UIMenu\Background.png").convert()
     background = pygame.transform.scale(background, (WIDTH, HEIGHT))
     index = 0
@@ -52,6 +52,7 @@ def main_menu():
                     easy_scene(index)
                     pygame.mixer.music.load(MUSIC['musicmenu'])
                     pygame.mixer.music.play(-1)
+                    pygame.mixer.music.set_volume(0.5)
                     # точка входа в изи мод
 
                 elif event.button == button_instances["hard"]:

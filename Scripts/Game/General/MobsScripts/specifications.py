@@ -15,10 +15,12 @@ class specifications:
 
     def is_dead(self):
         if self.curr_hp <= 0:
-            self.death()
+            self.death()  # Теперь death() удалит спрайт
+            return True
+        return False
 
     def is_alive(self):
-        return self.curr_hp > 0
+        return hasattr(self, 'alive') and self.alive and self.curr_hp > 0
 
     def change_hp(self, change):
         self.curr_hp += change
