@@ -2,8 +2,10 @@ from Scripts.Game.Weapon_scripts.Projectiles.Bullet import bullet
 import pygame
 import math
 from random import randint
+
+
 class fire(pygame.sprite.Sprite):
-    def __init__(self, all_sprites, targets, mob_group, start_pos,final_pos, confiq):
+    def __init__(self, all_sprites, targets, mob_group, start_pos, final_pos, confiq):
         super().__init__(all_sprites)
         # Вычисляем угол и направление
 
@@ -12,7 +14,8 @@ class fire(pygame.sprite.Sprite):
         self.angle = math.atan2(dy, dx)
         self.image = pygame.transform.scale(pygame.image.load(confiq['image']), confiq['scale'])  # Красная пуля
         self.rect = self.image.get_rect(center=start_pos)
-        self.image = pygame.transform.rotate(self.image, -(pygame.math.Vector2(final_pos) - pygame.math.Vector2(self.rect.midright)).as_polar()[1]*randint(0,2))
+        self.image = pygame.transform.rotate(self.image, -
+        (pygame.math.Vector2(final_pos) - pygame.math.Vector2(self.rect.midright)).as_polar()[1] * randint(0, 2))
 
         self.all_sprites = all_sprites
         self.targets = targets
@@ -44,5 +47,5 @@ class fire(pygame.sprite.Sprite):
         self.rect.y += self.velocity[1]
 
         self.projectile_collision()
-        if pygame.time.get_ticks()-self.time >= self.max_time:
+        if pygame.time.get_ticks() - self.time >= self.max_time:
             self.kill()

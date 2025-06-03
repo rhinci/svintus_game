@@ -19,7 +19,7 @@ class weapon(pg.sprite.Sprite):
         self.target = target_group
         self.set_sprite_size(stats['size'])
 
-    def rotate(self,pos):
+    def rotate(self, pos):
         direction = pos - Vector2(self.rect.midright)
         angle = -direction.as_polar()[1]
         flipped = pos[0] <= self.rect.centerx
@@ -29,7 +29,7 @@ class weapon(pg.sprite.Sprite):
     def set_sprite_size(self, scale):
         self.orig_image = pg.transform.scale(self.orig_image, scale)
 
-    def fire(self,pos):
+    def fire(self, pos):
         pass
 
     def draw(self, screen):

@@ -4,8 +4,12 @@ from ..MobsScripts.visual import visual
 from Scripts.Game.Weapon_scripts.Explosion import explosion
 from Scripts.Game.General.ItemBox import health_pack, exp_pack
 from configs.collectables import HEALTH_PACK, EXP
+from Scripts.Game.General.statistics_collector import run_stats
+
 import math
 from random import randint
+
+
 class enemy(specifications, visual):
     def __init__(self, all_sprites, enemy_group, mob_group, player, stats, pos):
         self.set_stats(stats)
@@ -28,6 +32,7 @@ class enemy(specifications, visual):
         self.angle = math.atan2(dy, dx)
         self.velocity = [self.spd * math.cos(self.angle), self.spd * math.sin(self.angle)]
         self.alive = True  # Добавляем флаг жив/мертв
+
     def move(self):
         self.rect.x += self.velocity[0]
         self.rect.y += self.velocity[1]
@@ -35,6 +40,7 @@ class enemy(specifications, visual):
         dy = self.player.pos[1] - self.rect.center[1]
         self.angle = math.atan2(dy, dx)
         self.velocity = [self.spd * math.cos(self.angle), self.spd * math.sin(self.angle)]
+
     def death(self):
         chance = randint(0, 100)
         if 0 <= chance <= 25:
@@ -43,7 +49,8 @@ class enemy(specifications, visual):
             exp_pack(self.all_sprites, EXP, self.player, self.rect.center)
 
         explosion(self.all_sprites, self.mob_group, self.rect.center, (100, 100))
-        self.kill()  # Удаляем из всех групп
+        self.kill()
+        run_stats.increment_stat("1. Kills", 2)# Удаляем из всех групп
         self.alive = False  # Помечаем как мертвого
         # Дополнительная очистка (опционально)
         self.all_sprites.remove(self)
@@ -60,8 +67,10 @@ class enemy(specifications, visual):
 
     def is_alive(self):
         return self.alive and self.curr_hp > 0  # Проверяем и флаг, и HP
+
     def attack(self):
         pass
+
     def border(self):
         if self.rect.centerx < self.scale[0] / 2:
             self.rect.centerx = self.scale[0] / 2
@@ -71,13 +80,14 @@ class enemy(specifications, visual):
             self.rect.centerx = self.screen.get_size()[0] - self.scale[0] / 2
         if self.rect.centery > self.screen.get_size()[1] - self.scale[1] / 2:
             self.rect.centery = self.screen.get_size()[1] - self.scale[1] / 2
+
     def collision(self):
         if pg.sprite.spritecollideany(self, self.mob_group):
             collideds = [c for c in self.mob_group if c != self and self.rect.colliderect(c.rect) and c.is_alive()]
             for collided in collideds:
                 if pg.sprite.collide_mask(self, collided):
                     if collided != self.player:
-                        self.rect.x  -= self.velocity[0]
+                        self.rect.x -= self.velocity[0]
                         self.rect.y -= self.velocity[1]
                     else:
                         self.rect.x -= self.velocity[0]
@@ -97,3 +107,4 @@ class enemy(specifications, visual):
         # Автоматическая проверка смерти
         if self.curr_hp <= 0 and self.alive:
             self.death()
+

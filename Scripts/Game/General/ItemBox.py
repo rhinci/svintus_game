@@ -1,4 +1,5 @@
 import pygame as pg
+from Scripts.Game.General.statistics_collector import run_stats
 
 
 class itemBox(pg.sprite.Sprite):
@@ -28,4 +29,5 @@ class exp_pack(itemBox):
     def collision(self):
         if pg.sprite.collide_rect(self, self.player):
             self.player.change_exp(5)
+            run_stats.increment_stat("3. Crystals collected")
             self.kill()

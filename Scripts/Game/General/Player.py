@@ -1,6 +1,8 @@
 from Scripts.Game.General.MobsScripts.playermove import PlayerMove
 from Scripts.Game.General.MobsScripts.visual import visual
 from Scripts.Game.General.MobsScripts.specifications import specifications
+from statistics import achievements_scene
+from Scripts.Game.General.statistics_collector import run_stats
 import pygame as pg
 import sys
 import math
@@ -39,8 +41,9 @@ class Player(PlayerMove, visual, specifications):
                     self.rect.y -= self.rect.size[1] * math.sin(angle)
 
     def death(self):
-        pg.quit()
-        sys.exit()
+        run_stats.end_run()
+        final_stats = run_stats.get_stats()
+        achievements_scene(final_stats)
 
     def attack(self):
         buttons = pg.mouse.get_pressed(num_buttons=3)
@@ -67,6 +70,8 @@ class Player(PlayerMove, visual, specifications):
             self.shoot_cooldown = 0
 
         self.attack()
+        run_stats.increment_stat("6. Bullets used")
+
         if self.weapon != None:
             self.weapon.rotate(pg.mouse.get_pos())
         self.player_move()

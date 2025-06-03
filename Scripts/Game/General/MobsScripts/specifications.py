@@ -1,3 +1,6 @@
+from Scripts.Game.General.statistics_collector import run_stats
+
+
 class specifications:
     def set_stats(self, stats):
         super().__init__()
@@ -24,6 +27,8 @@ class specifications:
 
     def change_hp(self, change):
         self.curr_hp += change
+        if change < 0:
+            run_stats.increment_stat("4. Damage taken", abs(change))
         if self.curr_hp > self.max_hp:
             self.curr_hp = self.max_hp
         self.is_dead()

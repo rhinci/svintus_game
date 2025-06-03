@@ -1,5 +1,6 @@
 import pygame
 import math
+from Scripts.Game.General.statistics_collector import run_stats
 
 
 class bullet(pygame.sprite.Sprite):
@@ -35,6 +36,7 @@ class bullet(pygame.sprite.Sprite):
                 if pygame.sprite.collide_mask(self, hit_target):
                     if hit_target.is_alive():
                         hit_target.change_hp(-self.dmg)
+                        run_stats.increment_stat("5. Damage dealt", self.dmg)
                         self.kill()
 
     def update(self):

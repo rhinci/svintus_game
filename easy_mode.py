@@ -13,13 +13,15 @@ from Scripts.Menu.canvas_class import Interface
 from Scripts.Menu.buttons_class import Button
 from configs.pause_btns_config import PAUSE_BUTTON_DEFINITIONS
 from configs.music import MUSIC
+from Scripts.Game.General.statistics_collector import run_stats
 
 
 def easy_scene(index):
     # инициализация основных систем
     pg.init()
     pg.mixer.init()
-
+    run_stats.reset_stats()
+    run_stats.start_run()
     clock = pg.time.Clock()
     FPS = 60
     screen = pg.display.set_mode(SIZE)
@@ -54,7 +56,7 @@ def easy_scene(index):
         case 4:
             player.set_weapon(lasergun(all_sprites, mobs_group, enemy_group, weapon_group, LASERGUN, player.pos))
     # враги
-    spawner = Spawner.spawner(all_sprites, enemy_group, mobs_group,weapon_group, player,player_group, 1, SIZE)
+    spawner = Spawner.spawner(all_sprites, enemy_group, mobs_group, weapon_group, player, player_group, 1, SIZE)
     player.curr_hp = 50
 
     pause_buttons = pg.sprite.Group()
@@ -121,8 +123,10 @@ def easy_scene(index):
                                 paused = False
                             elif button == button_instances["main_menu"]:
                                 running = False
+                                run_stats.end_run()
                                 return "main_menu"  # нужно переходить в меню
                             elif button == button_instances["exit"]:
+                                run_stats.end_run()
                                 running = False
 
         pg.display.flip()
