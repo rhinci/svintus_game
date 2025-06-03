@@ -14,6 +14,7 @@ from Scripts.Menu.buttons_class import Button
 from configs.pause_btns_config import PAUSE_BUTTON_DEFINITIONS
 from configs.music import MUSIC
 
+
 def easy_scene(index):
     # инициализация основных систем
     pg.init()
@@ -44,13 +45,14 @@ def easy_scene(index):
         case 0:
             player.set_weapon(mashineGun(all_sprites, mobs_group, enemy_group, weapon_group, MASHINEGUN, player.pos))
         case 1:
-            player.set_weapon(rocketlauncher(all_sprites, mobs_group, enemy_group, weapon_group, ROCKETLAUNCHER, player.pos))
+            player.set_weapon(
+                rocketlauncher(all_sprites, mobs_group, enemy_group, weapon_group, ROCKETLAUNCHER, player.pos))
         case 2:
             player.set_weapon(blaster(all_sprites, mobs_group, enemy_group, weapon_group, BLASTER, player.pos))
         case 3:
-            player.set_weapon(firethrower(all_sprites,mobs_group,enemy_group,weapon_group, FIRETHROWER,player.pos))
+            player.set_weapon(firethrower(all_sprites, mobs_group, enemy_group, weapon_group, FIRETHROWER, player.pos))
         case 4:
-            player.set_weapon(lasergun(all_sprites,mobs_group,enemy_group,weapon_group, LASERGUN,player.pos))
+            player.set_weapon(lasergun(all_sprites, mobs_group, enemy_group, weapon_group, LASERGUN, player.pos))
     # враги
     spawner = Spawner.spawner(all_sprites, enemy_group, mobs_group,weapon_group, player,player_group, 1, SIZE)
     player.curr_hp = 50
@@ -65,7 +67,7 @@ def easy_scene(index):
 
     while running:
         clock.tick(FPS)
-        screen.fill((0,0,0))
+        screen.fill((0, 0, 0))
         if not paused:
             all_sprites.draw(screen)
             all_sprites.update()
@@ -76,7 +78,9 @@ def easy_scene(index):
             interface.draw_text(screen, "HP", WIDTH / 2, HEIGHT - 50)
             interface.draw_text(screen, "EXP", WIDTH / 2, HEIGHT - 75)
             interface.draw_text(screen, "ATK:{0}".format(player.weapon.projectile['dmg']), 100, 150)
-            interface.draw_text(screen, "{0} min: {1} sec".format((pg.time.get_ticks()-timer) // 36000, ((pg.time.get_ticks()-timer) // 600) % 60), WIDTH / 2, 20)
+            interface.draw_text(screen, "{0} min: {1} sec".format((pg.time.get_ticks() - timer) // 36000,
+                                                                  ((pg.time.get_ticks() - timer) // 600) % 60),
+                                WIDTH / 2, 20)
 
         else:
             s = pg.Surface(SIZE, pg.SRCALPHA)
@@ -95,9 +99,12 @@ def easy_scene(index):
 
                 if not paused:
                     if event.key == pg.K_1:
-                        player.change_weapon(mashineGun(all_sprites, mobs_group, enemy_group, weapon_group, MASHINEGUN, player.pos))
+                        player.change_weapon(
+                            mashineGun(all_sprites, mobs_group, enemy_group, weapon_group, MASHINEGUN, player.pos))
                     if event.key == pg.K_2:
-                        player.change_weapon(rocketlauncher(all_sprites, mobs_group, enemy_group, weapon_group, ROCKETLAUNCHER, player.pos))
+                        player.change_weapon(
+                            rocketlauncher(all_sprites, mobs_group, enemy_group, weapon_group, ROCKETLAUNCHER,
+                                           player.pos))
                     if event.key == pg.K_3:
                         player.change_weapon(lasergun(all_sprites, mobs_group, enemy_group, weapon_group, BLASTER, pos))
 
@@ -114,7 +121,7 @@ def easy_scene(index):
                                 paused = False
                             elif button == button_instances["main_menu"]:
                                 running = False
-                                return "main_menu" # нужно переходить в меню
+                                return "main_menu"  # нужно переходить в меню
                             elif button == button_instances["exit"]:
                                 running = False
 
