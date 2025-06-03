@@ -3,5 +3,5 @@ from Scripts.Game.Weapon_scripts.Weapon import weapon
 
 
 class rocketlauncher(weapon):
-    def fire(self):
-        Rocket(self.all_sprites, self.target, self.mob_group, self.rect.center, self.projectile)
+    def fire(self,pos):
+        Rocket(self.all_sprites, self.target, self.mob_group, self.rect.center,pos, self.projectile)

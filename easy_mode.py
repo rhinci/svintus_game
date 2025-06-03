@@ -52,7 +52,7 @@ def easy_scene(index):
         case 4:
             player.set_weapon(lasergun(all_sprites,mobs_group,enemy_group,weapon_group, LASERGUN,player.pos))
     # враги
-    spawner = Spawner.spawner(all_sprites, enemy_group, mobs_group, player, 1, SIZE)
+    spawner = Spawner.spawner(all_sprites, enemy_group, mobs_group,weapon_group, player,player_group, 1, SIZE)
     player.curr_hp = 50
 
     pause_buttons = pg.sprite.Group()

@@ -1,6 +1,6 @@
 import pygame as pg
 from Scripts.Game.General.MobsScripts.specifications import specifications
-from .MobsScripts.visual import visual
+from ..MobsScripts.visual import visual
 from Scripts.Game.Weapon_scripts.Explosion import explosion
 from Scripts.Game.General.ItemBox import health_pack, exp_pack
 from configs.collectables import HEALTH_PACK, EXP
@@ -23,18 +23,24 @@ class enemy(specifications, visual):
         self.screen = pg.display.get_surface()
         self.weapon = None
         self.atk_cd = pg.time.get_ticks()
+        dx = self.player.pos[0] - self.rect.center[0]
+        dy = self.player.pos[1] - self.rect.center[1]
+        self.angle = math.atan2(dy, dx)
+        self.velocity = [self.spd * math.cos(self.angle), self.spd * math.sin(self.angle)]
         self.alive = True  # Добавляем флаг жив/мертв
     def move(self):
+        self.rect.x += self.velocity[0]
+        self.rect.y += self.velocity[1]
         dx = self.player.pos[0] - self.rect.center[0]
         dy = self.player.pos[1] - self.rect.center[1]
         self.angle = math.atan2(dy, dx)
         self.velocity = [self.spd * math.cos(self.angle), self.spd * math.sin(self.angle)]
     def death(self):
-        match randint(1, 2):
-            case 1:
-                health_pack(self.all_sprites, HEALTH_PACK, self.player, self.rect.center)
-            case 2:
-                exp_pack(self.all_sprites, EXP, self.player, self.rect.center)
+        chance = randint(0, 100)
+        if 0 <= chance <= 25:
+            health_pack(self.all_sprites, HEALTH_PACK, self.player, self.rect.center)
+        elif 25 < chance <= 50:
+            exp_pack(self.all_sprites, EXP, self.player, self.rect.center)
 
         explosion(self.all_sprites, self.mob_group, self.rect.center, (100, 100))
         self.kill()  # Удаляем из всех групп
@@ -85,17 +91,9 @@ class enemy(specifications, visual):
         self.move()
         self.border()
         self.animation()
-        self.rect.x += self.velocity[0]
-        self.rect.y += self.velocity[1]
+
         self.collision()
 
         # Автоматическая проверка смерти
         if self.curr_hp <= 0 and self.alive:
             self.death()
-
-
-class melee_enemy(enemy):
-    def attack(self):
-        if pg.time.get_ticks() - self.atk_cd >= 100 * self.spd_atk:
-            self.atk_cd = pg.time.get_ticks()
-            self.player.change_hp(-self.atk)
