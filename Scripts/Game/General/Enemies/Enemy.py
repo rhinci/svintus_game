@@ -5,7 +5,6 @@ from Scripts.Game.Weapon_scripts.Explosion import explosion
 from Scripts.Game.General.ItemBox import health_pack, exp_pack
 from configs.collectables import HEALTH_PACK, EXP
 from Scripts.Game.General.statistics_collector import run_stats
-
 import math
 from random import randint
 
@@ -50,7 +49,7 @@ class enemy(specifications, visual):
 
         explosion(self.all_sprites, self.mob_group, self.rect.center, (100, 100))
         self.kill()
-        run_stats.increment_stat("1. Kills", 2)# Удаляем из всех групп
+        run_stats.increment_stat("1. Kills", 1)# Удаляем из всех групп
         self.alive = False  # Помечаем как мертвого
         # Дополнительная очистка (опционально)
         self.all_sprites.remove(self)
@@ -107,4 +106,3 @@ class enemy(specifications, visual):
         # Автоматическая проверка смерти
         if self.curr_hp <= 0 and self.alive:
             self.death()
-

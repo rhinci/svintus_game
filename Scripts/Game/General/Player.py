@@ -49,6 +49,7 @@ class Player(PlayerMove, visual, specifications):
         buttons = pg.mouse.get_pressed(num_buttons=3)
         if self.weapon != None:
             if buttons[0] and self.shoot_cooldown == 0:
+                run_stats.increment_stat("6. Bullets used",1)
                 self.weapon.fire(pg.mouse.get_pos())
                 self.shoot_cooldown = self.spd_atk
 
@@ -70,7 +71,6 @@ class Player(PlayerMove, visual, specifications):
             self.shoot_cooldown = 0
 
         self.attack()
-        run_stats.increment_stat("6. Bullets used")
 
         if self.weapon != None:
             self.weapon.rotate(pg.mouse.get_pos())

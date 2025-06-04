@@ -4,7 +4,7 @@ from Scripts.Game.General.ItemBox import health_pack, exp_pack
 from configs.collectables import HEALTH_PACK, EXP
 import math
 from random import randint
-
+from Scripts.Game.General.statistics_collector import run_stats
 
 class range_enemy(enemy):
     def __init__(self, all_sprites, enemy_group, mob_group, player, stats, pos, weapon):
@@ -53,6 +53,7 @@ class range_enemy(enemy):
 
         explosion(self.all_sprites, self.mob_group, self.rect.center, (100, 100))
         self.kill()  # Удаляем из всех групп
+        run_stats.increment_stat("1. Kills", 1)
         self.alive = False  # Помечаем как мертвого
         # Дополнительная очистка (опционально)
         self.all_sprites.remove(self)

@@ -28,7 +28,11 @@ class specifications:
     def change_hp(self, change):
         self.curr_hp += change
         if change < 0:
-            run_stats.increment_stat("4. Damage taken", abs(change))
+            if self.tag == 'Player':
+                run_stats.increment_stat("4. Damage taken", abs(change))
+            else:
+                run_stats.increment_stat("5. Damage dealt", abs(change))
+
         if self.curr_hp > self.max_hp:
             self.curr_hp = self.max_hp
         self.is_dead()
