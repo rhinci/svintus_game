@@ -8,7 +8,7 @@ MASHINEGUN = {
 }
 ROCKETLAUNCHER = {
     "image": "Assets\guns\gun1.png",
-    "atk_spd": 1,
+    "atk_spd": 100,
     "size": (50, 50),
     "projectile": ROCKET
 }
