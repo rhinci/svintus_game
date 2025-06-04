@@ -40,5 +40,3 @@ def credits_scene():
                     return "main_menu"
 
         pg.display.flip()
-
-    pg.mixer.music.unload()

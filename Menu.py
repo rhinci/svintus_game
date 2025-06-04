@@ -8,6 +8,7 @@ from configs.music import MUSIC
 from easy_mode import easy_scene
 from hard_mode import hard_scene
 from credits import credits_scene
+from weapon_choice import weapon_scene
 def main_menu():
     pygame.init()
     pygame.mixer.init()
@@ -51,12 +52,9 @@ def main_menu():
                     pygame.mixer.music.load(MUSIC['musicmenu'])
                     pygame.mixer.music.play(-1)
                 elif event.button == button_instances["weapon"]:
-                    index = (index + 1) % 5
+                    index = weapon_scene(5)
                 elif event.button == button_instances["credits"]:
-                    pygame.mixer.music.unload()
                     credits_scene()
-                    pygame.mixer.music.load(MUSIC['musicmenu'])
-                    pygame.mixer.music.play(-1)
                 elif event.button == button_instances["exit"]:
                     print("Exiting game")
                     pygame.quit()
