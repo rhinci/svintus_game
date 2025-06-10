@@ -74,6 +74,7 @@ def easy_scene(index):
             break
         if not paused:
             all_sprites.draw(screen)
+            weapon_group.draw(screen)
             all_sprites.update()
             spawner.update()
             interface.draw_button(screen, "", (255, 0, 0), 0, HEIGHT - 50, WIDTH, 50)

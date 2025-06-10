@@ -1,6 +1,4 @@
 import pygame as pg
-
-
 class PlayerMove:
     def move_h(self):
         key = pg.key.get_pressed()
@@ -9,7 +7,6 @@ class PlayerMove:
         if key[pg.K_d]:
             return 1
         return 0
-
     def move_v(self):
         key = pg.key.get_pressed()
         if key[pg.K_w]:
@@ -17,7 +14,6 @@ class PlayerMove:
         if key[pg.K_s]:
             return 1
         return 0
-
     def move(self, pos, speed, size):
         border = pg.display.get_window_size()
         size = pg.Vector2(size)

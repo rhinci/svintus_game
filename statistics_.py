@@ -39,7 +39,7 @@ def achievements_scene(player_stats):
             key_text = text_font.render(key, True, (220, 220, 220))
             screen.blit(key_text, (WIDTH * 0.25, y_offset))
 
-            value_text = text_font.render(str(value), True, (255, 255, 150))
+            value_text = text_font.render(str(int(value)), True, (255, 255, 150))
             screen.blit(value_text, (WIDTH * 0.75 - value_text.get_width(), y_offset))
 
             y_offset += HEIGHT * 0.07
