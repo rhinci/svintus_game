@@ -15,6 +15,7 @@ from configs.pause_btns_config import PAUSE_BUTTON_DEFINITIONS
 from configs.music import MUSIC
 from Scripts.Game.General.statistics_collector import run_stats
 from pause_scene import pause
+from level_up import level_up_scene
 
 def easy_scene(index):
     # инициализация основных систем
@@ -77,6 +78,12 @@ def easy_scene(index):
         interface.draw_text(screen, "EXP", WIDTH / 2, HEIGHT - 75)
         interface.draw_text(screen, "ATK:{0}".format(player.weapon.projectile['dmg']), 100, 150)
         interface.draw_text(screen, "{0} min: {1} sec".format((pg.time.get_ticks() - timer) // 36000,((pg.time.get_ticks() - timer) // 600) % 60),WIDTH / 2, 20)
+
+        if (player.EXP % 10 == 0 and player.EXP != 0):
+            player.EXP = 0
+            buff_index , time = level_up_scene(timer)
+            timer += time
+            player.buff(buff_index)
 
         for event in pg.event.get():
             if event.type == pg.QUIT:

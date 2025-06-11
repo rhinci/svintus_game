@@ -47,7 +47,7 @@ def pause(time):
                 for button in pause_buttons:
                     if button.is_hovered:
                         if button == button_instances["resume"]:
-                            return True, pg.time.get_ticks()
+                            return True, pg.time.get_ticks() - time
                         elif button == button_instances["main_menu"]:
                             return False, pg.time.get_ticks() - time
                         elif button == button_instances["exit"]:

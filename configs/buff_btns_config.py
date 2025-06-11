@@ -1,13 +1,28 @@
 BUFF_BUTTON_DEFINITIONS = [
-    {"name": "ATK",
+    {"name": "BuffAtk",
+     "x_pos": 0.35,
      "y_pos": 0.3,
-     "image": "Assets\_UIMenu\Btn_easy.png"},
-    {"name": "SPD_ATK",
+     "width": 0.3,
+     "height": 0.1,
+     "text" : "ATTACK",
+     "image": "Assets\_UIMenu\Btn.png",
+     "hover_image": "Assets\other\logo.png"},
+
+    {"name": "BuffHP",
+     "x_pos": 0.35,
      "y_pos": 0.45,
-     "image": "Assets\_UIMenu\Btn_hard.png"
-     },
-    {"name": "SPD",
+     "width": 0.3,
+     "height": 0.1,
+     "text" : "MAX HEALTH",
+     "image": "Assets\_UIMenu\Btn.png",
+     "hover_image": "Assets\other\logo.png"},
+
+    {"name": "BuffSPD",
+     "x_pos": 0.35,
      "y_pos": 0.6,
-     "image": "Assets\_UIMenu\Btn_weapons.png"
-     }
+     "width": 0.3,
+     "height": 0.1,
+     "text" : "SPEED",
+     "image": "Assets\_UIMenu\Btn.png",
+     "hover_image": "Assets\other\logo.png"}
 ]

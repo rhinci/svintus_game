@@ -64,6 +64,21 @@ class Player(PlayerMove, visual, specifications):
     def buff_atk(self, atk):
         self.weapon.projectile['dmg'] += atk
 
+    def buff_hp(self,hp):
+        self.max_hp += hp
+
+    def buff_spd(self,spd):
+        self.spd += spd
+
+    def buff(self,index):
+        match index:
+            case 0:
+                self.buff_atk(10)
+            case 1:
+                self.buff_hp(20)
+            case 2:
+                self.buff_spd(1)
+
     def update(self):
         if self.shoot_cooldown > 0:
             self.shoot_cooldown -= self.weapon.spd_atk
@@ -77,7 +92,3 @@ class Player(PlayerMove, visual, specifications):
         self.player_move()
         self.rect.center = self.pos
         self.weapon.rect.center = self.rect.center
-
-        if (self.EXP % 50 == 0 and self.EXP != 0):
-            self.EXP = 0
-            self.buff_atk(10)
