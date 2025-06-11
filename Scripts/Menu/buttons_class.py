@@ -30,24 +30,20 @@ class Button(pygame.sprite.Sprite):
         self.sound = pygame.mixer.Sound(sound_path) if sound_path else None
         self.is_hovered = False
 
+        self.font = pygame.font.Font("Assets\Alagard-12px-unicode.otf", int(self.height * 0.6))
+        self.text_surface = self.font.render(self.text, True, (0, 0, 0))
+        self.text_rect = self.text_surface.get_rect(center=(self.width // 2, self.height // 2))
+
     def update(self):
         if self.is_hovered:
             self.image = self.hover_image
         else:
             self.image = self.normal_image
 
-        if self.text:
-            img_copy = self.image.copy()
-            font = pygame.font.Font(None, int(self.height * 0.6))
-            text_surface = font.render(self.text, True, (255, 255, 255))
-            text_rect = text_surface.get_rect(center=(self.width // 2, self.height // 2))
-            img_copy.blit(text_surface, text_rect)
-            self.image = img_copy
-
     def check_hover(self, mouse_pos):
         was_hovered = self.is_hovered
         self.is_hovered = self.rect.collidepoint(mouse_pos)
-
+        self.image.blit(self.text_surface, self.text_rect)
         if was_hovered != self.is_hovered:
             self.update()
 

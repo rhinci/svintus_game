@@ -1,14 +1,17 @@
 PAUSE_BUTTON_DEFINITIONS = [
     {"name": "resume",
      "y_pos": 0.4,
-     "image": "Assets/_UIMenu/Btn_resume.png",
+     "text" : "RESUME",
+     "image": "Assets\_UIMenu\Btn.png",
      "hover_image": "Assets\other\logo.png"},
     {"name": "main_menu",
      "y_pos": 0.55,
-     "image": "Assets/_UIMenu/Btn_mainmenu.png",
+     "text" : "HOME",
+     "image": "Assets\_UIMenu\Btn.png",
      "hover_image": "Assets\other\logo.png"},
     {"name": "exit",
      "y_pos": 0.7,
-     "image": "Assets/_UIMenu/Btn_exit.png",
+     "text" : "EXIT",
+     "image": "Assets\_UIMenu\Btn.png",
      "hover_image": "Assets\other\logo.png"}
 ]

@@ -17,7 +17,7 @@ def pause(time):
     button_instances = {}
 
     for btn_def in PAUSE_BUTTON_DEFINITIONS:
-        btn = Button(screen, 0.35, btn_def["y_pos"], 0.3, 0.1, "", btn_def["image"], btn_def["hover_image"])
+        btn = Button(screen, 0.35, btn_def["y_pos"], 0.3, 0.1, btn_def["text"], btn_def["image"], btn_def["hover_image"])
         pause_buttons.add(btn)
         button_instances[btn_def["name"]] = btn
 

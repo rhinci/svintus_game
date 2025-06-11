@@ -23,15 +23,15 @@ def main_menu():
     buttons = pygame.sprite.Group()
     button_instances = {}
     for btn_def in MENU_BUTTON_DEFINITIONS:
-        btn = Button(screen, btn_def["x_pos"], btn_def["y_pos"], btn_def["width"], btn_def["height"], "",btn_def["image"], btn_def["hover_image"])
+        btn = Button(screen, btn_def["x_pos"], btn_def["y_pos"], btn_def["width"], btn_def["height"], btn_def["text"],btn_def["image"], btn_def["hover_image"])
         buttons.add(btn)
         button_instances[btn_def["name"]] = btn
     running = True
     while running:
         screen.blit(background, (0, 0))
         font_size = int(HEIGHT * 0.1)
-        pixel_font = pygame.font.Font("Assets/GNF.ttf", font_size)
-        text_surface = pixel_font.render("Rusostrus", True, (0, 0, 0))
+        pixel_font = pygame.font.Font("Assets\Alagard-12px-unicode.otf", font_size)
+        text_surface = pixel_font.render("RUSOSTRUS", True, (0, 0, 0))
         text_rect = text_surface.get_rect(center=(WIDTH // 2, HEIGHT // 6))
         screen.blit(text_surface, text_rect)
         for event in pygame.event.get():
