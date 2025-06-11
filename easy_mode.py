@@ -79,7 +79,7 @@ def easy_scene(index):
         interface.draw_text(screen, "ATK:{0}".format(player.weapon.projectile['dmg']), 100, 150)
         interface.draw_text(screen, "{0} min: {1} sec".format((pg.time.get_ticks() - timer) // 36000,((pg.time.get_ticks() - timer) // 600) % 60),WIDTH / 2, 20)
 
-        if (player.EXP % 10 == 0 and player.EXP != 0):
+        if (player.EXP % 50 == 0 and player.EXP != 0):
             player.EXP = 0
             buff_index , time = level_up_scene(timer)
             timer += time

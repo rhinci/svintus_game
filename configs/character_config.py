@@ -4,7 +4,7 @@ PLAYER = {
     "spd": 5,
     "max_hp": 100,
     "scale": (100, 100),
-    "tag": 'player',
+    "tag": 'Player',
     "animation":
         {"idle":
             [
