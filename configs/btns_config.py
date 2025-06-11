@@ -52,6 +52,7 @@ MENU_WEAPON_BUTTON_DEFINITIONS = [
      "y_pos": 0.1,
      "width": 0.2,
      "height": 0.2,
+     "text" : "",
      "image": "Assets\guns\gun3.png",
      "hover_image": "Assets\other\logo.png"},
 
@@ -60,6 +61,7 @@ MENU_WEAPON_BUTTON_DEFINITIONS = [
      "y_pos": 0.1,
      "width": 0.2,
      "height": 0.2,
+     "text" :"",
      "image": "Assets\guns\gun1.png",
      "hover_image": "Assets\other\logo.png"},
 
@@ -68,6 +70,7 @@ MENU_WEAPON_BUTTON_DEFINITIONS = [
      "y_pos": 0.1,
      "width": 0.2,
      "height": 0.2,
+     "text" : "",
      "image": "Assets\guns\gun4.png",
      "hover_image": "Assets\other\logo.png"},
 
@@ -76,6 +79,7 @@ MENU_WEAPON_BUTTON_DEFINITIONS = [
      "y_pos": 0.4,
      "width": 0.2,
      "height": 0.2,
+     "text" : "",
      "image": "Assets\guns\gun5.png",
      "hover_image": "Assets\other\logo.png"},
 
@@ -84,6 +88,7 @@ MENU_WEAPON_BUTTON_DEFINITIONS = [
      "y_pos": 0.4,
      "width": 0.2,
      "height": 0.2,
+     "text" : "",
      "image": "Assets\guns\gun7.png",
      "hover_image": "Assets\other\logo.png"},
 
@@ -92,8 +97,7 @@ MENU_WEAPON_BUTTON_DEFINITIONS = [
      "y_pos": 0.75,
      "width": 0.3,
      "height": 0.1,
-     "image": "Assets\_UIMenu\Btn_exit.png",
-     "hover_image": "Assets\_UIMenu\Btn_exit_hovered.png"},
-
-
+     "text": "EXIT",
+     "image": "Assets\_UIMenu\Btn.png",
+     "hover_image": "Assets\other\logo.png"},
 ]

@@ -15,7 +15,7 @@ def weapon_scene(index):
     buttons = pygame.sprite.Group()
     button_instances = {}
     for btn_def in MENU_WEAPON_BUTTON_DEFINITIONS:
-        btn = Button(screen, btn_def["x_pos"], btn_def["y_pos"], btn_def["width"], btn_def["height"], "",btn_def["image"], btn_def["hover_image"])
+        btn = Button(screen, btn_def["x_pos"], btn_def["y_pos"], btn_def["width"], btn_def["height"], btn_def["text"],btn_def["image"], btn_def["hover_image"])
         buttons.add(btn)
         button_instances[btn_def["name"]] = btn
     running = True
