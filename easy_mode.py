@@ -10,8 +10,6 @@ from configs.character_config import PLAYER
 from configs.weapon_config import MASHINEGUN, BLASTER, ROCKETLAUNCHER, FIRETHROWER, LASERGUN
 from configs.screen_config import SIZE, HEIGHT, WIDTH
 from Scripts.Menu.canvas_class import Interface
-from Scripts.Menu.buttons_class import Button
-from configs.pause_btns_config import PAUSE_BUTTON_DEFINITIONS
 from configs.music import MUSIC
 from Scripts.Game.General.statistics_collector import run_stats
 from pause_scene import pause
@@ -25,13 +23,14 @@ def easy_scene(index):
     run_stats.start_run()
     clock = pg.time.Clock()
     FPS = 60
-    screen = pg.display.set_mode(SIZE)
+    screen = pg.display.set_mode(SIZE,pg.DOUBLEBUF)
     interface = Interface()
     running = True
     pg.mixer.music.load(MUSIC['musicgame'])
     pg.mixer.music.play(-1)
     pg.mixer.music.set_volume(0.01)
     timer = 0
+    background = pg.transform.scale(pg.image.load("Assets\_UIGame\Background.png").convert(),SIZE)
 
     # группы
     all_sprites = pg.sprite.Group()
@@ -59,11 +58,9 @@ def easy_scene(index):
     spawner = Spawner.spawner(all_sprites, enemy_group, mobs_group, weapon_group, player, player_group, 1, SIZE)
     player.curr_hp = 50
 
-
     while running:
         clock.tick(FPS)
-        screen.fill((0, 0, 0))
-
+        screen.blit(background,(0,0))
         if not(player.is_alive()):
             break
 
