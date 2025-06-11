@@ -15,7 +15,7 @@ from Scripts.Game.General.statistics_collector import run_stats
 from pause_scene import pause
 from level_up import level_up_scene
 
-def easy_scene(index):
+def game_scene(index):
     # инициализация основных систем
     pg.init()
     pg.mixer.init()
@@ -54,9 +54,9 @@ def easy_scene(index):
             player.set_weapon(firethrower(all_sprites, mobs_group, enemy_group, weapon_group, FIRETHROWER, player.pos))
         case 4:
             player.set_weapon(lasergun(all_sprites, mobs_group, enemy_group, weapon_group, LASERGUN, player.pos))
+
     # враги
     spawner = Spawner.spawner(all_sprites, enemy_group, mobs_group, weapon_group, player, player_group, 1, SIZE)
-    player.curr_hp = 50
 
     while running:
         clock.tick(FPS)

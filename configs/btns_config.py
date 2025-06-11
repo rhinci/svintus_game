@@ -4,22 +4,23 @@ MENU_BUTTON_DEFINITIONS = [
      "y_pos": 0.3,
      "width": 0.3,
      "height": 0.1,
-     "text" : "EASY MODE",
+     "text" : "PLAY",
      "image": "Assets\_UIMenu\Btn.png",
      "hover_image": "Assets\other\logo.png"},
 
-    {"name": "hard",
+    {"name": "credits",
      "x_pos": 0.35,
-     "y_pos": 0.45,
+     "y_pos": 0.6,
      "width": 0.3,
      "height": 0.1,
-     "text" : "HARD MODE",
+     "text" : "CREDITS",
      "image": "Assets\_UIMenu\Btn.png",
-     "hover_image": "Assets\other\logo.png"},
+     "hover_image": "Assets\other\logo.png"
+     },
 
     {"name": "weapon",
      "x_pos": 0.35,
-     "y_pos": 0.6,
+     "y_pos": 0.45,
      "width": 0.3,
      "height": 0.1,
      "text" : "WEAPON",
@@ -34,16 +35,6 @@ MENU_BUTTON_DEFINITIONS = [
      "text": "EXIT",
      "image": "Assets\_UIMenu\Btn.png",
      "hover_image": "Assets\other\logo.png"},
-
-    {"name": "credits",
-     "x_pos": 0.73,
-     "y_pos": 0.79,
-     "width": 0.13,
-     "height": 0.06,
-     "text" : "CREDITS",
-     "image": "Assets\_UIMenu\Btn.png",
-     "hover_image": "Assets\other\logo.png"
-     }
 ]
 
 MENU_WEAPON_BUTTON_DEFINITIONS = [

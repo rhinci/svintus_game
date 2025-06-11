@@ -6,7 +6,7 @@ from configs.screen_config import SIZE, HEIGHT, WIDTH
 from configs.btns_config import MENU_WEAPON_BUTTON_DEFINITIONS
 from configs.music import MUSIC
 
-def weapon_scene(index):
+def weapon_scene(index = 0):
     pygame.init()
     screen = pygame.display.set_mode(SIZE)
     pygame.display.set_caption("Weapon_scene")

@@ -5,8 +5,7 @@ from Scripts.Menu.buttons_class import Button
 from configs.screen_config import SIZE, HEIGHT, WIDTH
 from configs.btns_config import MENU_BUTTON_DEFINITIONS
 from configs.music import MUSIC
-from easy_mode import easy_scene
-from hard_mode import hard_scene
+from PLAY import game_scene
 from credits import credits_scene
 from weapon_choice import weapon_scene
 def main_menu():
@@ -42,17 +41,12 @@ def main_menu():
             if event.type == pygame.USEREVENT:
                 if event.button == button_instances["easy"]:
                     pygame.mixer.music.unload()
-                    easy_scene(index)
+                    game_scene(index)
                     pygame.mixer.music.load(MUSIC['musicmenu'])
                     pygame.mixer.music.play(-1)
                     pygame.mixer.music.set_volume(0.5)
-                elif event.button == button_instances["hard"]:
-                    pygame.mixer.music.unload()
-                    hard_scene(index)
-                    pygame.mixer.music.load(MUSIC['musicmenu'])
-                    pygame.mixer.music.play(-1)
                 elif event.button == button_instances["weapon"]:
-                    index = weapon_scene(5)
+                    index = weapon_scene(index)
                 elif event.button == button_instances["credits"]:
                     credits_scene()
                 elif event.button == button_instances["exit"]:
