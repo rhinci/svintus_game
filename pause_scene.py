@@ -4,18 +4,15 @@ from configs.screen_config import SIZE
 from Scripts.Menu.buttons_class import Button
 from configs.pause_btns_config import PAUSE_BUTTON_DEFINITIONS
 
-
-
 def pause(time):
     # инициализация основных систем
     clock = pg.time.Clock()
     FPS = 60
     screen = pg.display.set_mode(SIZE)
     time = pg.time.get_ticks()
-
+    #кнопки
     pause_buttons = pg.sprite.Group()
     button_instances = {}
-
     for btn_def in PAUSE_BUTTON_DEFINITIONS:
         btn = Button(screen, 0.35, btn_def["y_pos"], 0.3, 0.1, btn_def["text"], btn_def["image"], btn_def["hover_image"])
         pause_buttons.add(btn)
@@ -38,7 +35,6 @@ def pause(time):
                 if event.key == pg.K_p or event.key == pg.K_ESCAPE:
                     return True, pg.time.get_ticks()-time
             # Обработка кнопок паузы
-
             if event.type == pg.MOUSEMOTION:
                 for button in pause_buttons:
                     button.check_hover(event.pos)

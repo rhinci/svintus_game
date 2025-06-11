@@ -1,6 +1,6 @@
 import pygame as pg
 import sys
-from configs.screen_config import SIZE
+from configs.screen_config import SIZE,WIDTH,HEIGHT
 from Scripts.Menu.buttons_class import Button
 from configs.buff_btns_config import BUFF_BUTTON_DEFINITIONS
 
@@ -10,7 +10,9 @@ def level_up_scene(time):
     FPS = 60
     screen = pg.display.set_mode(SIZE)
     time = pg.time.get_ticks()
-
+    background = pg.image.load("Assets\_UIMenu\Background.png").convert()
+    background = pg.transform.scale(background, (WIDTH,HEIGHT))
+    #инициализация кнопок
     buff_buttons = pg.sprite.Group()
     button_instances = {}
 
@@ -21,24 +23,16 @@ def level_up_scene(time):
 
     while True:
         clock.tick(FPS)
-        screen.fill((0, 0, 0))
-        s = pg.Surface(SIZE, pg.SRCALPHA)
-        s.fill((0, 0, 0))
-        screen.blit(s, (0, 0))
-
+        #отображение кнопок
+        screen.blit(background,(0,0))
         buff_buttons.draw(screen)
-
+        #взаимодействия с кнопками
         for event in pg.event.get():
-
-            if event.type == pg.KEYDOWN:
-                if event.key == pg.K_p or event.key == pg.K_ESCAPE:
-                    return True, pg.time.get_ticks()-time
-            # Обработка кнопок паузы
-
+            #наведение на кнопку
             if event.type == pg.MOUSEMOTION:
                 for button in buff_buttons:
                     button.check_hover(event.pos)
-
+            #нажатие
             if event.type == pg.MOUSEBUTTONDOWN and event.button == 1:
                 for button in buff_buttons:
                     if button.is_hovered:
@@ -48,5 +42,4 @@ def level_up_scene(time):
                             return 1, pg.time.get_ticks() - time
                         elif button == button_instances["BuffSPD"]:
                             return 2, pg.time.get_ticks() - time
-
         pg.display.flip()

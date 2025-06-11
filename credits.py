@@ -4,12 +4,11 @@ from configs.screen_config import SIZE, HEIGHT, WIDTH
 
 def credits_scene():
     pg.init()
-
+    #основные системы
     clock = pg.time.Clock()
     FPS = 60
     screen = pg.display.set_mode(SIZE)
     running = True
-
     title_font = pg.font.Font("Assets/GNF.ttf", int(HEIGHT * 0.06))
     text_font = pg.font.Font("Assets/GNF.ttf", int(HEIGHT * 0.035))
     small_font = pg.font.Font("Assets/GNF.ttf", int(HEIGHT * 0.025))
@@ -17,7 +16,7 @@ def credits_scene():
     while running:
         clock.tick(FPS)
         screen.fill((0, 0, 0))
-
+        #вывод результатов
         title_text = title_font.render("Svintus Games Production", True, (255, 255, 255))
         text1 = text_font.render("Gromyko Ilya", True, (255, 255, 255))
         text2 = text_font.render("Lupanova Daria", True, (255, 255, 255))

@@ -10,14 +10,12 @@ class range_enemy(enemy):
     def __init__(self, all_sprites, enemy_group, mob_group, player, stats, pos, weapon):
         super().__init__(all_sprites, enemy_group, mob_group, player, stats, pos)
         # ... остальная инициализация ...
-        self.attack_range = 200
+        self.attack_range = 500
         self.weapon = weapon
         self.retreat_mode = False
         self.retreat_threshold = 0.3  # 30% HP для активации отступления
 
     def retreat(self):
-        if not hasattr(self, 'player'):
-            return
 
         # Базовое отступление от игрока
         dx = self.rect.centerx - self.player.rect.centerx
@@ -28,7 +26,7 @@ class range_enemy(enemy):
         retreat_direction = (dx / distance, dy / distance)
 
         # Добавляем случайное отклонение для непредсказуемости
-        angle_variation = math.radians(randint(-30, 30))
+        angle_variation = math.radians(randint(-50, 50))
         new_direction = (
             retreat_direction[0] * math.cos(angle_variation) - retreat_direction[1] * math.sin(angle_variation),
             retreat_direction[0] * math.sin(angle_variation) + retreat_direction[1] * math.cos(angle_variation)
@@ -39,10 +37,6 @@ class range_enemy(enemy):
             new_direction[0] * retreat_speed,
             new_direction[1] * retreat_speed
         ]
-
-        # Если здоровье восстановлено выше порога - выходим из режима отступления
-        if self.curr_hp > self.max_hp * (self.retreat_threshold + 0.1):  # +10% гистерезис
-            self.retreat_mode = False
 
     def death(self):
         chance = randint(0, 100)
@@ -72,21 +66,17 @@ class range_enemy(enemy):
         if not self.retreat_mode and self.curr_hp <= self.max_hp * self.retreat_threshold:
             self.retreat_mode = True
 
-        if self.retreat_mode:
-            self.retreat()
-            # В режиме отступления все равно можно атаковать
-            distance_to_player = math.sqrt(
+        distance_to_player = math.sqrt(
                 (self.player.pos[0] - self.rect.centerx) ** 2 +
                 (self.player.pos[1] - self.rect.centery) ** 2
             )
+        if self.retreat_mode:
+            self.retreat()
+            # В режиме отступления все равно можно атаковать
             if distance_to_player <= self.attack_range * 1.2:  # +20% к дистанции атаки
                 self.attack()
         else:
             # Обычное поведение
-            distance_to_player = math.sqrt(
-                (self.player.pos[0] - self.rect.centerx) ** 2 +
-                (self.player.pos[1] - self.rect.centery) ** 2
-            )
             if distance_to_player <= self.attack_range:
                 self.attack()
             else:

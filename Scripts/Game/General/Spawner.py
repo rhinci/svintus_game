@@ -4,15 +4,13 @@ from Scripts.Game.General.Enemies.Melee_enemy import melee_enemy
 from Scripts.Game.General.Enemies.Range_enemy import range_enemy
 from configs.enemy_config import MELEE_ENEMY, RANGE_ENEMY
 from Scripts.Game.Weapon_scripts.Mashinegun import mashineGun
-from Scripts.Game.Weapon_scripts.RocketLauncher import rocketlauncher
 from Scripts.Game.Weapon_scripts.Blaster import blaster
 from Scripts.Game.Weapon_scripts.FireThrower import firethrower
 from Scripts.Game.Weapon_scripts.LaserGun import lasergun
-from configs.enemy_weapon_config import MASHINEGUN, BLASTER, ROCKETLAUNCHER, FIRETHROWER, LASERGUN
+from configs.enemy_weapon_config import MASHINEGUN, BLASTER,FIRETHROWER, LASERGUN
 import math
+
 list_of_enemys = [MELEE_ENEMY, RANGE_ENEMY]
-
-
 class spawner():
     def __init__(self, all_sprites, enemy_group, mob_group, weapon_group, player, player_group, spawn_cooldown, screen):
         self.spawn_cooldown = spawn_cooldown * 1000  # начальный кд спавна в мс
@@ -37,10 +35,10 @@ class spawner():
 
     def spawn(self):
         """Генерация позиции спавна с учетом позиции игрока"""
-        margin = 200  # минимальное расстояние от игрока
+        margin = 400  # минимальное расстояние от игрока
         while True:
             x = r.randint(0, int(self.screen[0]))
-            y = r.randint(0, int(self.screen[1]))
+            y = r.randint(0, int(self.screen[1]-90))
             # Проверяем, чтобы враги не спавнились слишком близко к игроку
             if math.hypot(x - self.target.rect.centerx, y - self.target.rect.centery) > margin:
                 return (x, y)
@@ -50,21 +48,19 @@ class spawner():
         current_time = (pg.time.get_ticks() - self.game_start_time) / 1000  # время в секундах
         # Увеличиваем шанс появления мощного оружия со временем
         if current_time > 120:  # после 2 минут
-            weights = [15, 25, 30, 20, 10]  # mashineGun, rocket, firethrower, blaster, laser
+            weights = [30, 25, 15, 10]  # mashineGun, firethrower, blaster, laser
         elif current_time > 60:  # после 1 минуты
-            weights = [25, 20, 25, 20, 10]
+            weights = [20, 25, 25, 20]
         else:  # начальные значения
-            weights = [40, 5, 20, 30, 5]
+            weights = [40, 20, 30, 5]
 
         weapon_type = r.choices(
-            ['mashineGun', 'rocket', 'firethrower', 'blaster', 'laser'],
+            ['mashineGun', 'firethrower', 'blaster', 'laser'],
             weights=weights
         )[0]
 
         if weapon_type == 'mashineGun':
             return mashineGun(self.all_sprites, self.mob_group, self.player_group, self.weapon_group, MASHINEGUN, pos)
-        elif weapon_type == 'rocket':
-            return rocketlauncher(self.all_sprites, self.mob_group, self.player_group, self.weapon_group, ROCKETLAUNCHER, pos)
         elif weapon_type == 'firethrower':
             return firethrower(self.all_sprites, self.mob_group, self.player_group, self.weapon_group, FIRETHROWER, pos)
         elif weapon_type == 'blaster':
@@ -75,8 +71,6 @@ class spawner():
     def update_difficulty(self):
         """Автоматическое увеличение сложности со временем"""
         current_time = pg.time.get_ticks()
-        time_elapsed = (current_time - self.game_start_time) / 1000  # в секундах
-
         # Увеличиваем сложность каждые difficulty_interval миллисекунд
         if current_time - self.last_difficulty_increase > self.difficulty_interval:
             self.last_difficulty_increase = current_time
@@ -109,8 +103,6 @@ class spawner():
             len(self.enemy_group) < self.max_enemies):
 
             self.update_time = current_time
-            pos = self.spawn()
-            enemy_type = r.choice(self.list_of_enemys)
 
             # Иногда спавним несколько врагов сразу
             spawn_count = 1
@@ -120,6 +112,8 @@ class spawner():
                 spawn_count = 3
 
             for _ in range(spawn_count):
+                pos = self.spawn()
+                enemy_type = r.choice(self.list_of_enemys)
                 if enemy_type == MELEE_ENEMY:
                     enemy = melee_enemy(
                         self.all_sprites, self.enemy_group, self.mob_group,

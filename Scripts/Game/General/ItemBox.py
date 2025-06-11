@@ -28,6 +28,6 @@ class health_pack(itemBox):
 class exp_pack(itemBox):
     def collision(self):
         if pg.sprite.collide_rect(self, self.player):
-            self.player.change_exp(5)
+            self.player.change_exp(1)
             run_stats.increment_stat("3. Crystals collected")
             self.kill()

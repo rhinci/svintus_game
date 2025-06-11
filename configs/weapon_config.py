@@ -21,7 +21,7 @@ BLASTER = {
 FIRETHROWER = {
     "image" : "Assets\guns\gun5.png",
     "atk_spd": 100,
-    "size" :(75,50),
+    "size" :(55,25),
     "projectile" : FIRE
 }
 LASERGUN = {

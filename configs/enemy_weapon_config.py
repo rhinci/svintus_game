@@ -2,13 +2,13 @@ from configs.enemy_projectiles_config import BULLET, LASER, ROCKET,FIRE,LASERBEA
 
 MASHINEGUN = {
     "image": "Assets\guns\gun3.png",
-    "atk_spd": 20,
+    "atk_spd": 100,
     "size": (50, 50),
     "projectile": BULLET
 }
 ROCKETLAUNCHER = {
     "image": "Assets\guns\gun1.png",
-    "atk_spd": 100,
+    "atk_spd": 10,
     "size": (50, 50),
     "projectile": ROCKET
 }
@@ -21,7 +21,7 @@ BLASTER = {
 FIRETHROWER = {
     "image" : "Assets\guns\gun5.png",
     "atk_spd": 100,
-    "size" :(75,50),
+    "size" :(55,25),
     "projectile" : FIRE
 }
 LASERGUN = {
