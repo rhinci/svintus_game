@@ -6,7 +6,7 @@ MENU_BUTTON_DEFINITIONS = [
      "height": 0.1,
      "text" : "PLAY",
      "image": "Assets\_UIMenu\Btn.png",
-     "hover_image": "Assets\other\logo.png"},
+     "hover_image": "Assets\_UIMenu\Hovered_Btn.png"},
 
     {"name": "credits",
      "x_pos": 0.35,
@@ -15,7 +15,7 @@ MENU_BUTTON_DEFINITIONS = [
      "height": 0.1,
      "text" : "CREDITS",
      "image": "Assets\_UIMenu\Btn.png",
-     "hover_image": "Assets\other\logo.png"
+     "hover_image": "Assets\_UIMenu\Hovered_Btn.png"
      },
 
     {"name": "weapon",
@@ -25,7 +25,7 @@ MENU_BUTTON_DEFINITIONS = [
      "height": 0.1,
      "text" : "WEAPON",
      "image": "Assets\_UIMenu\Btn.png",
-     "hover_image": "Assets\other\logo.png"},
+     "hover_image": "Assets\_UIMenu\Hovered_Btn.png"},
 
     {"name": "exit",
      "x_pos": 0.35,
@@ -98,12 +98,12 @@ PAUSE_BUTTON_DEFINITIONS = [
      "y_pos": 0.4,
      "text" : "RESUME",
      "image": "Assets\_UIMenu\Btn.png",
-     "hover_image": "Assets\other\logo.png"},
+     "hover_image": "Assets\_UIMenu\Hovered_Btn.png"},
     {"name": "main_menu",
      "y_pos": 0.55,
      "text" : "HOME",
      "image": "Assets\_UIMenu\Btn.png",
-     "hover_image": "Assets\other\logo.png"},
+     "hover_image": "Assets\_UIMenu\Hovered_Btn.png"},
     {"name": "exit",
      "y_pos": 0.7,
      "text" : "EXIT",
@@ -119,7 +119,7 @@ BUFF_BUTTON_DEFINITIONS = [
      "height": 0.1,
      "text" : "ATTACK",
      "image": "Assets\_UIMenu\Btn.png",
-     "hover_image": "Assets\other\logo.png"},
+     "hover_image": "Assets\_UIMenu\Hovered_Btn.png"},
 
     {"name": "BuffHP",
      "x_pos": 0.35,
@@ -128,7 +128,7 @@ BUFF_BUTTON_DEFINITIONS = [
      "height": 0.1,
      "text" : "MAX HEALTH",
      "image": "Assets\_UIMenu\Btn.png",
-     "hover_image": "Assets\other\logo.png"},
+     "hover_image": "Assets\_UIMenu\Hovered_Btn.png"},
 
     {"name": "BuffSPD",
      "x_pos": 0.35,
@@ -137,5 +137,5 @@ BUFF_BUTTON_DEFINITIONS = [
      "height": 0.1,
      "text" : "SPEED",
      "image": "Assets\_UIMenu\Btn.png",
-     "hover_image": "Assets\other\logo.png"}
+     "hover_image": "Assets\_UIMenu\Hovered_Btn.png"}
 ]
