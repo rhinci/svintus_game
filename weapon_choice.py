@@ -3,13 +3,12 @@ import sys
 from Scripts.Menu.buttons_class import Button
 from configs.screen_config import SIZE, HEIGHT, WIDTH
 from configs.btns_config import MENU_WEAPON_BUTTON_DEFINITIONS
-
+from Scripts.Menu.background_anim import Background
 def weapon_scene(index = 0):
     pygame.init()
     screen = pygame.display.set_mode(SIZE)
     pygame.display.set_caption("Weapon_scene")
-    background = pygame.image.load("Assets\_UIMenu\Background.png").convert()
-    background = pygame.transform.scale(background, (WIDTH, HEIGHT))
+    background = Background()
     buttons = pygame.sprite.Group()
     button_instances = {}
     for btn_def in MENU_WEAPON_BUTTON_DEFINITIONS:
@@ -19,7 +18,7 @@ def weapon_scene(index = 0):
     running = True
     #выбор оружия и выход
     while running:
-        screen.blit(background, (0, 0))
+        background.draw(screen)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False

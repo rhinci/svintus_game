@@ -1,6 +1,7 @@
 import pygame as pg
 import sys
 from Scripts.Menu.buttons_class import Button
+from Scripts.Menu.background_anim import Background
 from configs.screen_config import SIZE, HEIGHT, WIDTH
 from configs.btns_config import MENU_BUTTON_DEFINITIONS
 from configs.music import MUSIC
@@ -20,7 +21,7 @@ def main_menu():
     font_size = int(HEIGHT * 0.1)
     pixel_font = pg.font.Font("Assets\Alagard-12px-unicode.otf", font_size)
     #фон
-    background = pg.transform.scale(pg.image.load("Assets\_UIMenu\Background.png").convert(), (WIDTH, HEIGHT))
+    background = Background()
     index = 0
     #инициализация кнопок
     buttons = pg.sprite.Group()
@@ -32,7 +33,7 @@ def main_menu():
 
     running = True
     while running:
-        screen.blit(background, (0, 0))
+        background.draw(screen)
         text_surface = pixel_font.render("RUSOSTRUS", True, (0, 0, 0))
         text_rect = text_surface.get_rect(center=(WIDTH // 2, HEIGHT // 6))
         screen.blit(text_surface, text_rect)

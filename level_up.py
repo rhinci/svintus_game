@@ -1,6 +1,7 @@
 import pygame as pg
 from configs.screen_config import SIZE,WIDTH,HEIGHT
 from Scripts.Menu.buttons_class import Button
+from Scripts.Menu.background_anim import Background
 from configs.btns_config import BUFF_BUTTON_DEFINITIONS
 
 def level_up_scene(time):
@@ -9,8 +10,7 @@ def level_up_scene(time):
     FPS = 60
     screen = pg.display.set_mode(SIZE)
     time = pg.time.get_ticks()
-    background = pg.image.load("Assets\_UIMenu\Background.png").convert()
-    background = pg.transform.scale(background, (WIDTH,HEIGHT))
+    background = Background()
     #инициализация кнопок
     buff_buttons = pg.sprite.Group()
     button_instances = {}
@@ -23,7 +23,7 @@ def level_up_scene(time):
     while True:
         clock.tick(FPS)
         #отображение кнопок
-        screen.blit(background,(0,0))
+        background.draw(screen)
         buff_buttons.draw(screen)
         #взаимодействия с кнопками
         for event in pg.event.get():
