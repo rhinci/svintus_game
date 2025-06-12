@@ -1,5 +1,7 @@
-WIDTH = 1920
-HEIGHT = 1200
+import tkinter as tk
+root = tk.Tk()
+WIDTH = root.winfo_screenwidth()
+HEIGHT = root.winfo_screenheight()
 SIZE = (WIDTH, HEIGHT)
 
 BACKGROUND_DATA = {
