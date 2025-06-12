@@ -31,6 +31,10 @@ class Button(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(topleft=(self.x, self.y))
 
         self.is_hovered = False
+
+        self.pressed_sound = pygame.mixer.Sound("Assets\Sound\Menu\pressed.mp3")
+        self.hovered_sound = pygame.mixer.Sound("Assets\Sound\Menu\hovered.mp3")
+        self.hovered_sound.set_volume(0.25)
     #отображение что курсор наведен на кнопку
     def update(self):
         if self.is_hovered:
@@ -43,8 +47,10 @@ class Button(pygame.sprite.Sprite):
         self.is_hovered = self.rect.collidepoint(mouse_pos)
         self.image.blit(self.text_surface, self.text_rect)
         if was_hovered != self.is_hovered:
+            self.hovered_sound.play()
             self.update()
     #взаимодействие с кнопкой
     def handle_event(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and self.is_hovered:
+            self.pressed_sound.play()
             pygame.event.post(pygame.event.Event(pygame.USEREVENT, button=self))

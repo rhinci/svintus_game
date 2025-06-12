@@ -11,7 +11,8 @@ class explosion(pg.sprite.Sprite):
         self.dmg = dmg
         self.targets = targets
         self.update_time = pg.time.get_ticks()
-
+        self.sound = pg.mixer.Sound("Assets\Sound\Weapon\explosion.mp3")
+        self.sound.set_volume(0.1)
         for i in range(6):
             img = pg.image.load("Assets\Animations\effects\Explosion\{0}.png".format(i + 1))
             img = pg.transform.scale(img, (scale[0] * 2, scale[1] * 2))
@@ -28,6 +29,7 @@ class explosion(pg.sprite.Sprite):
             self.index += 1
         if self.index == len(self.animation_list):
             if self.dmg != 0:
+                self.sound.play()
                 if pg.sprite.spritecollideany(self, self.targets):
                     hit_targets = [h_t for h_t in self.targets if self.rect.colliderect(h_t.rect)]
                     for hit_target in hit_targets:

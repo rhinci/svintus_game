@@ -20,6 +20,10 @@ class Player(PlayerMove, visual, specifications):
         self.images = stats["animation"]
         self.pos = pg.Vector2(pos)
         self.set_sprites(self.images, self.scale, self.pos)
+        self.sound = pg.mixer.Sound("Assets\Sound\Player\Moving.mp3")
+        self.sound.set_volume(0.3)
+        self.channel = pg.mixer.Channel(7)
+
     #установка оружия
     def set_weapon(self, weapon):
         self.weapon = weapon
@@ -55,6 +59,8 @@ class Player(PlayerMove, visual, specifications):
         if self.move_h() == 0 and self.move_v() == 0:
             self.set_animation()
         else:
+            if not(self.channel.get_busy()):
+                self.sound.play()
             self.pos = self.move(self.pos, self.spd, self.scale)
             self.set_animation('run')
         self.animation()
