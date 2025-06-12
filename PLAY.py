@@ -26,7 +26,7 @@ def game_scene(index):
     running = True
     pg.mixer.music.load(MUSIC['musicgame'])
     pg.mixer.music.play(-1)
-    pg.mixer.music.set_volume(0.01)
+    pg.mixer.music.set_volume(0.1)
     #таймер
     timer = 0
     #фон

@@ -17,7 +17,7 @@ def main_menu():
     pg.display.set_caption("Rusostrus")
     pg.mixer.music.load(MUSIC['musicmenu'])
     pg.mixer.music.play(-1)
-    pg.mixer.music.set_volume(0.01)
+    pg.mixer.music.set_volume(0.1)
     font_size = int(HEIGHT * 0.1)
     pixel_font = pg.font.Font("Assets\Alagard-12px-unicode.otf", font_size)
     #фон
@@ -32,6 +32,8 @@ def main_menu():
         button_instances[btn_def["name"]] = btn
 
     running = True
+
+
     while running:
         background.draw(screen)
         text_surface = pixel_font.render("RUSOSTRUS", True, (0, 0, 0))
