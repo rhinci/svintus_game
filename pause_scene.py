@@ -3,6 +3,7 @@ import sys
 from configs.screen_config import SIZE
 from Scripts.Menu.buttons_class import Button
 from configs.btns_config import PAUSE_BUTTON_DEFINITIONS
+from configs.screen_config import SIZE
 
 def pause(time):
     # инициализация основных систем
@@ -10,6 +11,7 @@ def pause(time):
     FPS = 60
     screen = pg.display.set_mode(SIZE)
     time = pg.time.get_ticks()
+    background = pg.transform.scale(pg.image.load("Assets\_UIMenu\Background.png").convert(), SIZE)
     #кнопки
     pause_buttons = pg.sprite.Group()
     button_instances = {}
@@ -20,10 +22,7 @@ def pause(time):
 
     while True:
         clock.tick(FPS)
-        screen.fill((0, 0, 0))
-        s = pg.Surface(SIZE, pg.SRCALPHA)
-        s.fill((0, 0, 0))
-        screen.blit(s, (0, 0))
+        screen.blit(background, (0, 0))
 
         pause_buttons.draw(screen)
 

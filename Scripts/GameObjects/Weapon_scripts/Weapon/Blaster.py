@@ -3,6 +3,7 @@ from Scripts.GameObjects.Weapon_scripts.Weapon.Weapon import weapon
 import pygame as pg
 
 class blaster(weapon):
+    #атака
     def fire(self, pos):
         if pg.time.get_ticks() - self.cooldown >= self.spd_atk:
             self.cooldown = pg.time.get_ticks()

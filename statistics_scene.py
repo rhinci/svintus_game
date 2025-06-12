@@ -23,7 +23,7 @@ def achievements_scene(player_stats):
         "6. Bullets used": 0,  #
     }
     stats = player_stats if player_stats else default_stats
-
+    #отображение статистики
     while running:
         clock.tick(FPS)
         screen.fill((0, 0, 0))
@@ -46,7 +46,7 @@ def achievements_scene(player_stats):
 
         hint = hint_font.render("Press ESC to return to the main menu", True, (150, 150, 180))
         screen.blit(hint, (WIDTH // 2 - hint.get_width() // 2, HEIGHT * 0.9))
-
+    #выход из статистики
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 pg.quit()

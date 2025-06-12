@@ -27,6 +27,6 @@ FIRETHROWER = {
 LASERGUN = {
     "image": "Assets\guns\gun7.png",
     "atk_spd": 1000,
-    "size": (50, 50),
+    "size": (50, 25),
     "projectile": LASERBEAM
 }

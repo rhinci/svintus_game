@@ -4,5 +4,6 @@ from configs.projectiles_config import FIRE
 
 
 class firethrower(weapon):
+    #атака
     def fire(self, pos):
         fire(self.all_sprites, self.target, self.mob_group, self.rect.center, pos, FIRE)

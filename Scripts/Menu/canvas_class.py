@@ -7,7 +7,7 @@ class Interface:
         self.width = stats['width']
         self.height = stats['height']
         self.background_color = (30, 30, 30)
-        self.text_color = (105, 54, 43)
+        self.text_color = (255,255,255)
         self.font_size = stats['font_size']
         self.font = pygame.font.Font(stats['font_name'], self.font_size)
 

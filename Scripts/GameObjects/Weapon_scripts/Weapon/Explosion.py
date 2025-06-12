@@ -1,6 +1,7 @@
 import pygame as pg
 
 class explosion(pg.sprite.Sprite):
+    #установка отображения и анимации взрыва
     def __init__(self, all_sprites, targets, pos, scale, dmg=0):
         super().__init__(all_sprites)
 
@@ -18,7 +19,7 @@ class explosion(pg.sprite.Sprite):
         self.image = self.animation_list[self.index]
         self.rect = self.image.get_rect()
         self.rect.center = pos
-
+    #отображения спецэффекта
     def update(self):
         ANIMATION_COOLDOWN = 100
         if pg.time.get_ticks() - self.update_time > ANIMATION_COOLDOWN:

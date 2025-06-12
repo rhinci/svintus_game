@@ -81,9 +81,9 @@ def game_scene(index):
         screen.blit(pg.transform.scale(curr_hp,(WIDTH*(player.curr_hp>=0)*player.curr_hp/player.max_hp, 60)),(0,HEIGHT-60))
         screen.blit(pg.transform.scale(exp,(WIDTH*player.EXP/num_to_upgrade, 25)), (0,HEIGHT-85))
         screen.blit(timer_image,(WIDTH/2-75,10))
-        interface.draw_text(screen, "HP:{0}/{1}".format(int(player.curr_hp),player.max_hp), WIDTH / 2, HEIGHT - 50,(255,255,255))
-        interface.draw_text(screen, "EXP:{0}/{1}".format(player.EXP,num_to_upgrade), WIDTH / 2, HEIGHT - 95)
-        interface.draw_text(screen, "{0} min: {1} sec".format((pg.time.get_ticks() - timer) // 36000,((pg.time.get_ticks() - timer) // 600) % 60),WIDTH / 2-20, 40)
+        interface.draw_text(screen, "HP:{0}/{1}".format(int(player.curr_hp),player.max_hp), WIDTH / 2-60, HEIGHT - 50,(0,0,0))
+        interface.draw_text(screen, "EXP:{0}/{1}".format(player.EXP,num_to_upgrade), WIDTH / 2-60, HEIGHT - 95,(0,0,0))
+        interface.draw_text(screen, "{0} min: {1} sec".format((pg.time.get_ticks() - timer) // 36000,((pg.time.get_ticks() - timer) // 600) % 60),WIDTH / 2-20, 40,(0, 0, 0))
 
         if (player.EXP % num_to_upgrade == 0 and player.EXP != 0):
             player.EXP = 0

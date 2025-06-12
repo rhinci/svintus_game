@@ -16,7 +16,7 @@ def credits_scene():
     while running:
         clock.tick(FPS)
         screen.fill((0, 0, 0))
-        #вывод результатов
+        #вывод статистики
         title_text = title_font.render("Svintus Games Production", True, (255, 255, 255))
         text1 = text_font.render("Gromyko Ilya", True, (255, 255, 255))
         text2 = text_font.render("Lupanova Daria", True, (255, 255, 255))

@@ -17,6 +17,7 @@ def weapon_scene(index = 0):
         buttons.add(btn)
         button_instances[btn_def["name"]] = btn
     running = True
+    #выбор оружия и выход
     while running:
         screen.blit(background, (0, 0))
         for event in pygame.event.get():

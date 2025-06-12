@@ -27,7 +27,7 @@ class spawner():
         self.game_start_time = pg.time.get_ticks()
         self.max_enemies = 20  # начальный максимум врагов
         self.max_enemies_limit = 40  # абсолютный максимум врагов
-        self.difficulty_interval = 30000  # интервал увеличения сложности (30 сек)
+        self.difficulty_interval = 90000  # интервал увеличения сложности (90 сек)
 
         # Статистика для баланса
         self.spawn_count = 0
@@ -38,7 +38,7 @@ class spawner():
         margin = 400  # минимальное расстояние от игрока
         while True:
             x = r.randint(0, int(self.screen[0]))
-            y = r.randint(0, int(self.screen[1]-90))
+            y = r.randint(60, int(self.screen[1]-90))
             # Проверяем, чтобы враги не спавнились слишком близко к игроку
             if math.hypot(x - self.target.rect.centerx, y - self.target.rect.centery) > margin:
                 return (x, y)

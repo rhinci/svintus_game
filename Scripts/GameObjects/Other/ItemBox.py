@@ -4,6 +4,7 @@ from Scripts.GameObjects.PlayerScripts.statistics_collector import run_stats
 
 class itemBox(pg.sprite.Sprite):
     def __init__(self, all_sprites, config, player, pos):
+        #инициализация отображения
         super().__init__(all_sprites)
         self.item_type = config['item_type']
         self.image = pg.image.load(config['image'])
@@ -20,6 +21,7 @@ class itemBox(pg.sprite.Sprite):
 
 class health_pack(itemBox):
     def collision(self):
+        #взаимодействие с игроком
         if pg.sprite.collide_rect(self, self.player):
             self.player.change_hp(5)
             self.kill()
@@ -27,6 +29,7 @@ class health_pack(itemBox):
 
 class exp_pack(itemBox):
     def collision(self):
+        #взаимодействие с игроком
         if pg.sprite.collide_rect(self, self.player):
             self.player.change_exp(1)
             run_stats.increment_stat("3. Crystals collected")

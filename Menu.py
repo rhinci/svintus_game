@@ -20,8 +20,7 @@ def main_menu():
     font_size = int(HEIGHT * 0.1)
     pixel_font = pg.font.Font("Assets\Alagard-12px-unicode.otf", font_size)
     #фон
-    background = pg.image.load("Assets\_UIMenu\Background.png").convert()
-    background = pg.transform.scale(background, (WIDTH, HEIGHT))
+    background = pg.transform.scale(pg.image.load("Assets\_UIMenu\Background.png").convert(), (WIDTH, HEIGHT))
     index = 0
     #инициализация кнопок
     buttons = pg.sprite.Group()

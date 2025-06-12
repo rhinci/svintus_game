@@ -45,7 +45,7 @@ class fire(pygame.sprite.Sprite):
         # Обновляем позицию пули
         self.rect.x += self.velocity[0]
         self.rect.y += self.velocity[1]
-
+        #столкновение с врагом
         self.projectile_collision()
         if pygame.time.get_ticks() - self.time >= self.max_time:
             self.kill()

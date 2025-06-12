@@ -79,16 +79,18 @@ class enemy(specifications, visual):
         pass
 
     def border(self):
-        if self.rect.centerx < self.scale[0] / 2:
-            self.rect.centerx = self.scale[0] / 2
-        if self.rect.centery < self.scale[0] / 2:
-            self.rect.centery = self.scale[0] / 2
+        #не выходят за границу экрана
+        if self.rect.centerx + 110 < self.scale[0] / 2:
+            self.rect.centerx = 110 + self.scale[0] / 2
+        if self.rect.centery < self.scale[0] / 2 + 60:
+            self.rect.centery = self.scale[0] / 2 + 60
         if self.rect.centerx > self.screen.get_size()[0] - self.scale[0] / 2:
             self.rect.centerx = self.screen.get_size()[0] - self.scale[0] / 2
         if self.rect.centery > self.screen.get_size()[1] - self.scale[1] / 2:
-            self.rect.centery = self.screen.get_size()[1] - self.scale[1] / 2
+            self.rect.centery = self.screen.get_size()[1] - self.scale[1] / 2 - 75
 
     def collision(self):
+        #столкновение с игровыми объектам
         if pg.sprite.spritecollideany(self, self.mob_group):
             collideds = [c for c in self.mob_group if c != self and self.rect.colliderect(c.rect) and c.is_alive()]
             for collided in collideds:

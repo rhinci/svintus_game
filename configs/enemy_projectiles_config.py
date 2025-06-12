@@ -18,7 +18,7 @@ LASER = {
 }
 FIRE = {
     "spd": 5,
-    "dmg": 0.05,
+    "dmg": 0.005,
     "image": "Assets\projectiles\Fire.png",
     "time" : 600,
     "scale":(15,15)
