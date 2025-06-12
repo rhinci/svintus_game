@@ -14,13 +14,13 @@ ROCKETLAUNCHER = {
 }
 BLASTER = {
     "image": "Assets\guns\gun4.png",
-    "atk_spd": 100,
+    "atk_spd": 200,
     "size": (50, 50),
     "projectile": LASER
 }
 FIRETHROWER = {
     "image" : "Assets\guns\gun5.png",
-    "atk_spd": 100,
+    "atk_spd": 50,
     "size" :(55,25),
     "projectile" : FIRE
 }

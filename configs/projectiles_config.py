@@ -12,20 +12,20 @@ ROCKET = {
 }
 LASER = {
     "spd": 10,
-    "dmg": 10,
+    "dmg": 5,
     "image": "Assets\projectiles\LaserProjectile.png",
     "scale": (23, 23)
 }
 FIRE = {
     "spd": 5,
-    "dmg": 5,
+    "dmg": 1,
     "image": "Assets\projectiles\Fire.png",
     "time" : 600,
     "scale":(40,40)
 }
 LASERBEAM = {
     "spd": 50,
-    "dmg": 10,
+    "dmg": 2.5,
     "image": "Assets\projectiles\LaserBeam.png",
     "scale": (51, 10)
 }

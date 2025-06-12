@@ -51,7 +51,7 @@ def main_menu():
                     game_scene(index)
                     pg.mixer.music.load(MUSIC['musicmenu'])
                     pg.mixer.music.play(-1)
-                    pg.mixer.music.set_volume(0.01)
+                    pg.mixer.music.set_volume(0.1)
                 elif event.button == button_instances["weapon"]:
                     index = weapon_scene(index)
                 elif event.button == button_instances["credits"]:
