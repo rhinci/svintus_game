@@ -1,17 +1,17 @@
 import pygame as pg
-from Scripts.Game.General.Player import Player
-from Scripts.Game.Weapon_scripts.Mashinegun import mashineGun
-from Scripts.Game.Weapon_scripts.RocketLauncher import rocketlauncher
-from Scripts.Game.Weapon_scripts.Blaster import blaster
-from Scripts.Game.Weapon_scripts.FireThrower import firethrower
-from Scripts.Game.Weapon_scripts.LaserGun import lasergun
-from Scripts.Game.General import Spawner
+from Scripts.GameObjects.PlayerScripts.Player import Player
+from Scripts.GameObjects.Weapon_scripts.Weapon.Mashinegun import mashineGun
+from Scripts.GameObjects.Weapon_scripts.Weapon.RocketLauncher import rocketlauncher
+from Scripts.GameObjects.Weapon_scripts.Weapon.Blaster import blaster
+from Scripts.GameObjects.Weapon_scripts.Weapon.FireThrower import firethrower
+from Scripts.GameObjects.Weapon_scripts.Weapon.LaserGun import lasergun
+from Scripts.GameObjects.Other import Spawner
 from configs.character_config import PLAYER
 from configs.weapon_config import MASHINEGUN, BLASTER, ROCKETLAUNCHER, FIRETHROWER, LASERGUN
 from configs.screen_config import SIZE, HEIGHT, WIDTH
 from Scripts.Menu.canvas_class import Interface
 from configs.music import MUSIC
-from Scripts.Game.General.statistics_collector import run_stats
+from Scripts.GameObjects.PlayerScripts.statistics_collector import run_stats
 from pause_scene import pause
 from level_up import level_up_scene
 
@@ -48,7 +48,7 @@ def game_scene(index):
     player = Player(all_sprites, player_group, mobs_group, PLAYER, pos)
     run_stats.reset_stats()
     run_stats.start_run()
-    num_to_upgrade = 1
+    num_to_upgrade = 5
     #установка оружия
     match index:
         case 0:
@@ -78,16 +78,16 @@ def game_scene(index):
         spawner.update()
         screen.blit(empty_hp,(0,HEIGHT-60))
         screen.blit(empty_exp,(0,HEIGHT-85))
-        screen.blit(pg.transform.scale(curr_hp,(WIDTH*player.curr_hp/player.max_hp, 60)),(0,HEIGHT-60))
-        screen.blit(pg.transform.scale(exp,(WIDTH*player.EXP/10, 25)), (0,HEIGHT-85))
+        screen.blit(pg.transform.scale(curr_hp,(WIDTH*(player.curr_hp>=0)*player.curr_hp/player.max_hp, 60)),(0,HEIGHT-60))
+        screen.blit(pg.transform.scale(exp,(WIDTH*player.EXP/num_to_upgrade, 25)), (0,HEIGHT-85))
         screen.blit(timer_image,(WIDTH/2-75,10))
-        interface.draw_text(screen, "HP", WIDTH / 2, HEIGHT - 50)
-        interface.draw_text(screen, "EXP", WIDTH / 2, HEIGHT - 75)
+        interface.draw_text(screen, "HP:{0}/{1}".format(int(player.curr_hp),player.max_hp), WIDTH / 2, HEIGHT - 50,(255,255,255))
+        interface.draw_text(screen, "EXP:{0}/{1}".format(player.EXP,num_to_upgrade), WIDTH / 2, HEIGHT - 95)
         interface.draw_text(screen, "{0} min: {1} sec".format((pg.time.get_ticks() - timer) // 36000,((pg.time.get_ticks() - timer) // 600) % 60),WIDTH / 2-20, 40)
 
         if (player.EXP % num_to_upgrade == 0 and player.EXP != 0):
             player.EXP = 0
-            num_to_upgrade+=1
+            num_to_upgrade += 5
             buff_index , time = level_up_scene(timer)
             timer += time
             player.buff(buff_index)

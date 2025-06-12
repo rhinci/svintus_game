@@ -1,8 +1,7 @@
 import pygame as pg
-import sys
 from configs.screen_config import SIZE,WIDTH,HEIGHT
 from Scripts.Menu.buttons_class import Button
-from configs.buff_btns_config import BUFF_BUTTON_DEFINITIONS
+from configs.btns_config import BUFF_BUTTON_DEFINITIONS
 
 def level_up_scene(time):
     # инициализация основных систем

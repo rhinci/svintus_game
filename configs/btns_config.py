@@ -92,3 +92,50 @@ MENU_WEAPON_BUTTON_DEFINITIONS = [
      "image": "Assets\_UIMenu\Btn.png",
      "hover_image": "Assets\other\logo.png"},
 ]
+
+PAUSE_BUTTON_DEFINITIONS = [
+    {"name": "resume",
+     "y_pos": 0.4,
+     "text" : "RESUME",
+     "image": "Assets\_UIMenu\Btn.png",
+     "hover_image": "Assets\other\logo.png"},
+    {"name": "main_menu",
+     "y_pos": 0.55,
+     "text" : "HOME",
+     "image": "Assets\_UIMenu\Btn.png",
+     "hover_image": "Assets\other\logo.png"},
+    {"name": "exit",
+     "y_pos": 0.7,
+     "text" : "EXIT",
+     "image": "Assets\_UIMenu\Btn.png",
+     "hover_image": "Assets\other\logo.png"}
+]
+
+BUFF_BUTTON_DEFINITIONS = [
+    {"name": "BuffAtk",
+     "x_pos": 0.35,
+     "y_pos": 0.3,
+     "width": 0.3,
+     "height": 0.1,
+     "text" : "ATTACK",
+     "image": "Assets\_UIMenu\Btn.png",
+     "hover_image": "Assets\other\logo.png"},
+
+    {"name": "BuffHP",
+     "x_pos": 0.35,
+     "y_pos": 0.45,
+     "width": 0.3,
+     "height": 0.1,
+     "text" : "MAX HEALTH",
+     "image": "Assets\_UIMenu\Btn.png",
+     "hover_image": "Assets\other\logo.png"},
+
+    {"name": "BuffSPD",
+     "x_pos": 0.35,
+     "y_pos": 0.6,
+     "width": 0.3,
+     "height": 0.1,
+     "text" : "SPEED",
+     "image": "Assets\_UIMenu\Btn.png",
+     "hover_image": "Assets\other\logo.png"}
+]

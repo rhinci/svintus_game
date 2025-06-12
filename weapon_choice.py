@@ -1,10 +1,8 @@
 import pygame
 import sys
-import pygame.mixer_music
 from Scripts.Menu.buttons_class import Button
 from configs.screen_config import SIZE, HEIGHT, WIDTH
 from configs.btns_config import MENU_WEAPON_BUTTON_DEFINITIONS
-from configs.music import MUSIC
 
 def weapon_scene(index = 0):
     pygame.init()

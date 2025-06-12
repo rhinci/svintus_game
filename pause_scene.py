@@ -2,7 +2,7 @@ import pygame as pg
 import sys
 from configs.screen_config import SIZE
 from Scripts.Menu.buttons_class import Button
-from configs.pause_btns_config import PAUSE_BUTTON_DEFINITIONS
+from configs.btns_config import PAUSE_BUTTON_DEFINITIONS
 
 def pause(time):
     # инициализация основных систем
@@ -38,7 +38,6 @@ def pause(time):
             if event.type == pg.MOUSEMOTION:
                 for button in pause_buttons:
                     button.check_hover(event.pos)
-
             if event.type == pg.MOUSEBUTTONDOWN and event.button == 1:
                 for button in pause_buttons:
                     if button.is_hovered:
