@@ -1,7 +1,7 @@
 from Scripts.GameObjects.PlayerScripts.playermove import PlayerMove
 from Scripts.GameObjects.PlayerScripts.visual import visual
 from Scripts.GameObjects.PlayerScripts.specifications import specifications
-from statistics_scene import achievements_scene
+from scene.statistics_scene import achievements_scene
 from Scripts.GameObjects.PlayerScripts.statistics_collector import run_stats
 import pygame as pg
 import math

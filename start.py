@@ -1,4 +1,4 @@
-from Menu import main_menu
+from scene.Menu import main_menu
 from Scripts.Menu.canvas_class import Interface
 import pygame as pg
 from configs.screen_config import LOGO_DATA,SIZE,WIDTH,HEIGHT

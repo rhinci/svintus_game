@@ -12,8 +12,8 @@ from configs.screen_config import SIZE, HEIGHT, WIDTH
 from Scripts.Menu.canvas_class import Interface
 from configs.music import MUSIC
 from Scripts.GameObjects.PlayerScripts.statistics_collector import run_stats
-from pause_scene import pause
-from level_up import level_up_scene
+from scene.pause_scene import pause
+from scene.level_up import level_up_scene
 
 def game_scene(index):
     # инициализация основных систем

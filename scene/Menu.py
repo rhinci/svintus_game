@@ -5,9 +5,9 @@ from Scripts.Menu.background_anim import Background
 from configs.screen_config import SIZE, HEIGHT, WIDTH
 from configs.btns_config import MENU_BUTTON_DEFINITIONS
 from configs.music import MUSIC
-from PLAY import game_scene
-from credits import credits_scene
-from weapon_choice import weapon_scene
+from scene.PLAY import game_scene
+from scene.credits import credits_scene
+from scene.weapon_choice import weapon_scene
 
 def main_menu():
     pg.init()
